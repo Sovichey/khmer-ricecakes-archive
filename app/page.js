@@ -8,7 +8,7 @@ const styles = {
   },
   kicker: {
     fontFamily: "'Courier New', monospace",
-    color: "#2EE6A8",
+    color: "#003ef9",
     fontSize: 14,
     letterSpacing: 1,
   },
