@@ -1,3 +1,19 @@
+export default function EntryCard({ title, description, contributor, place }) {
+  return (
+    <article style={styles.card}>
+      <h3 style={styles.title}>{title}</h3>
+      <p style={styles.description}>{description}</p>
+      <footer style={styles.metaRow}>
+        <p style={styles.meta}>
+          <span style={styles.metaLabel}>Contributor</span> {contributor}
+        </p>
+        <p style={styles.meta}>
+          <span style={styles.metaLabel}>Place</span> {place}
+        </p>
+      </footer>
+    </article>
+  );
+}
 const styles = {
   card: {
     backgroundColor: "#FFF9EE",
@@ -10,6 +26,7 @@ const styles = {
   },
   title: {
     margin: 0,
+    color: "#111827",
     fontSize: 21,
     lineHeight: 1.35,
   },
@@ -30,29 +47,13 @@ const styles = {
   },
   meta: {
     margin: 0,
+    color: "#374151",
     fontSize: 14,
   },
   metaLabel: {
-    color: "#7B4B2A",
+    color: "#374151",
     fontSize: 11,
     fontWeight: 900,
     textTransform: "uppercase",
   },
 };
-
-export default function EntryCard({ title, description, contributor, place }) {
-  return (
-    <article style={styles.card}>
-      <h3 style={styles.title}>{title}</h3>
-      <p style={styles.description}>{description}</p>
-      <footer style={styles.metaRow}>
-        <p style={styles.meta}>
-          <span style={styles.metaLabel}>Contributor</span> {contributor}
-        </p>
-        <p style={styles.meta}>
-          <span style={styles.metaLabel}>Place</span> {place}
-        </p>
-      </footer>
-    </article>
-  );
-}

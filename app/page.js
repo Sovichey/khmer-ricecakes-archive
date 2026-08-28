@@ -1,3 +1,4 @@
+import EntryCard from "../components/EntryCard";
 import collection from "../collection.config.js";
 
 const styles = {
@@ -54,6 +55,11 @@ const styles = {
     fontSize: 13,
     color: "#5A6373",
   },
+  entries: {
+    display: "grid",
+    gap: 18,
+    marginTop: 28,
+  },
 };
 
 export default function Home() {
@@ -72,7 +78,22 @@ export default function Home() {
         <p style={styles.cardValue}>{collection.source}</p>
       </div>
 
-      <p style={styles.count}>entries in the archive: 0 (for now)</p>
+      <p style={styles.count}>entries in the archive: 2</p>
+
+      <section style={styles.entries}>
+        <EntryCard
+          title="Num Kachai (នំកូឆាយ)"
+          description="Chewy rice flour cake stuffed with seasoned garlic chives, pan-fried on flat griddles until crispy, served with sweet garlic-chili soy dip."
+          contributor="Sovichey"
+          place="Psar Kandal, Phnom Penh"
+        />
+        <EntryCard
+          title="Num Krok (នំគ្រក់)"
+          description="Golden, crispy half-spheres made from rice flour batter, coconut cream, and green onions cooked in traditional cast-iron griddle molds."
+          contributor="Sophal"
+          place="Russian Market, Phnom Penh"
+        />
+      </section>
 
       <footer style={styles.footer}>
         Built in ICT 340 - Vibe Coding, American University of Phnom Penh, Fall
