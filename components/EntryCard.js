@@ -16,8 +16,8 @@ export default function EntryCard({ title, description, contributor, place }) {
 }
 const styles = {
   card: {
-    backgroundColor: "#FFF9EE",
-    border: "1px solid #DFD2BC",
+    backgroundColor: "#1C222C",
+    border: "1px solid #2E3644",
     borderRadius: 8,
     padding: 22,
     display: "flex",
@@ -26,13 +26,13 @@ const styles = {
   },
   title: {
     margin: 0,
-    color: "#111827",
+    color: "#E8EDF2",
     fontSize: 21,
     lineHeight: 1.35,
   },
   description: {
     margin: 0,
-    color: "#5D5448",
+    color: "#97A1B3",
     fontSize: 15,
     lineHeight: 1.65,
     overflowWrap: "break-word",
@@ -43,15 +43,15 @@ const styles = {
     gap: 28,
     marginTop: "auto",
     paddingTop: 12,
-    borderTop: "1px solid #ECE3D2",
+    borderTop: "1px solid #2E3644",
   },
   meta: {
     margin: 0,
-    color: "#374151",
+    color: "#E8EDF2",
     fontSize: 14,
   },
   metaLabel: {
-    color: "#374151",
+    color: "#97A1B3",
     fontSize: 11,
     fontWeight: 900,
     textTransform: "uppercase",

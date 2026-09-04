@@ -1,5 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import EntryCard from "../components/EntryCard";
 import collection from "../collection.config.js";
+import entries from "../data/entries.js";
 
 const styles = {
   wrap: {
@@ -60,9 +64,39 @@ const styles = {
     gap: 18,
     marginTop: 28,
   },
+  searchLabel: {
+    display: "block",
+    fontSize: 14,
+    fontWeight: 700,
+    marginTop: 48,
+    marginBottom: 8,
+  },
+  searchInput: {
+    width: "100%",
+    boxSizing: "border-box",
+    padding: "12px 14px",
+    border: "1px solid #2E3644",
+    borderRadius: 8,
+    backgroundColor: "#1C222C",
+    color: "#E8EDF2",
+    fontSize: 16,
+  },
+  emptyState: {
+    margin: "28px 0 0",
+    color: "#97A1B3",
+    lineHeight: 1.6,
+  },
 };
 
 export default function Home() {
+  const [query, setQuery] = useState("");
+  const normalizedQuery = query.trim().toLocaleLowerCase();
+  const visibleEntries = entries.filter((entry) =>
+    `${entry.title} ${entry.description} ${entry.contributor} ${entry.place}`
+      .toLocaleLowerCase()
+      .includes(normalizedQuery),
+  );
+
   return (
     <main style={styles.wrap}>
       <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
@@ -78,22 +112,34 @@ export default function Home() {
         <p style={styles.cardValue}>{collection.source}</p>
       </div>
 
-      <p style={styles.count}>entries in the archive: 2</p>
+      <label htmlFor="entry-search" style={styles.searchLabel}>
+        Search the archive
+      </label>
+      <input
+        id="entry-search"
+        type="search"
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+        placeholder="Search by title, description, contributor, or place"
+        style={styles.searchInput}
+      />
 
-      <section style={styles.entries}>
-        <EntryCard
-          title="Num Kachai (នំកូឆាយ)"
-          description="Chewy rice flour cake stuffed with seasoned garlic chives, pan-fried on flat griddles until crispy, served with sweet garlic-chili soy dip."
-          contributor="Sovichey"
-          place="Psar Kandal, Phnom Penh"
-        />
-        <EntryCard
-          title="Num Krok (នំគ្រក់)"
-          description="Golden, crispy half-spheres made from rice flour batter, coconut cream, and green onions cooked in traditional cast-iron griddle molds."
-          contributor="Sophal"
-          place="Russian Market, Phnom Penh"
-        />
-      </section>
+      <p style={styles.count}>
+        entries in the archive: {visibleEntries.length} of {entries.length}
+      </p>
+
+      {visibleEntries.length > 0 ? (
+        <section style={styles.entries} aria-label="Archive entries">
+          {visibleEntries.map((entry) => (
+            <EntryCard key={entry.title} {...entry} />
+          ))}
+        </section>
+      ) : (
+        <p style={styles.emptyState}>
+          No rice cakes match that search yet. Try another Khmer word or clear
+          the search.
+        </p>
+      )}
 
       <footer style={styles.footer}>
         Built in ICT 340 - Vibe Coding, American University of Phnom Penh, Fall
