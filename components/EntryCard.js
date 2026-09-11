@@ -1,14 +1,43 @@
-export default function EntryCard({ title, description, contributor, place }) {
+function highlightText(text, query) {
+  const normalizedQuery = query.trim();
+  if (!normalizedQuery) {
+    return text;
+  }
+
+  const escapedQuery = normalizedQuery.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const parts = text.split(new RegExp(`(${escapedQuery})`, "gi"));
+
+  return parts.map((part, index) =>
+    part.toLocaleLowerCase() === normalizedQuery.toLocaleLowerCase() ? (
+      <mark key={`${part}-${index}`} style={styles.highlight}>
+        {part}
+      </mark>
+    ) : (
+      part
+    ),
+  );
+}
+
+export default function EntryCard({
+  title,
+  description,
+  contributor,
+  place,
+  image,
+  query = "",
+}) {
   return (
     <article style={styles.card}>
-      <h3 style={styles.title}>{title}</h3>
-      <p style={styles.description}>{description}</p>
+      <img src={image} alt={`${title} rice cake`} style={styles.image} />
+      <h3 style={styles.title}>{highlightText(title, query)}</h3>
+      <p style={styles.description}>{highlightText(description, query)}</p>
       <footer style={styles.metaRow}>
         <p style={styles.meta}>
-          <span style={styles.metaLabel}>Contributor</span> {contributor}
+          <span style={styles.metaLabel}>Contributor</span>{" "}
+          {highlightText(contributor, query)}
         </p>
         <p style={styles.meta}>
-          <span style={styles.metaLabel}>Place</span> {place}
+          <span style={styles.metaLabel}>Place</span> {highlightText(place, query)}
         </p>
       </footer>
     </article>
@@ -23,6 +52,13 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     gap: 10,
+  },
+  image: {
+    width: "100%",
+    height: 220,
+    objectFit: "cover",
+    borderRadius: 6,
+    backgroundColor: "#2E3644",
   },
   title: {
     margin: 0,
@@ -55,5 +91,11 @@ const styles = {
     fontSize: 11,
     fontWeight: 900,
     textTransform: "uppercase",
+  },
+  highlight: {
+    backgroundColor: "#2EE6A8",
+    color: "#11223f",
+    borderRadius: 2,
+    padding: "0 2px",
   },
 };

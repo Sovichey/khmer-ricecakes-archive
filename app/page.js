@@ -74,12 +74,28 @@ const styles = {
   searchInput: {
     width: "100%",
     boxSizing: "border-box",
-    padding: "12px 14px",
+    padding: "12px 44px 12px 14px",
     border: "1px solid #2E3644",
     borderRadius: 8,
     backgroundColor: "#1C222C",
     color: "#E8EDF2",
     fontSize: 16,
+  },
+  searchBox: {
+    position: "relative",
+  },
+  clearButton: {
+    position: "absolute",
+    top: "50%",
+    right: 10,
+    transform: "translateY(-50%)",
+    border: 0,
+    background: "transparent",
+    color: "#97A1B3",
+    fontSize: 22,
+    lineHeight: 1,
+    cursor: "pointer",
+    padding: "4px 8px",
   },
   emptyState: {
     margin: "28px 0 0",
@@ -91,6 +107,7 @@ const styles = {
 export default function Home() {
   const [query, setQuery] = useState("");
   const normalizedQuery = query.trim().toLocaleLowerCase();
+  const hasQuery = normalizedQuery.length > 0;
   const visibleEntries = entries.filter((entry) =>
     `${entry.title} ${entry.description} ${entry.contributor} ${entry.place}`
       .toLocaleLowerCase()
@@ -115,14 +132,26 @@ export default function Home() {
       <label htmlFor="entry-search" style={styles.searchLabel}>
         Search the archive
       </label>
-      <input
-        id="entry-search"
-        type="search"
-        value={query}
-        onChange={(event) => setQuery(event.target.value)}
-        placeholder="Search by title, description, contributor, or place"
-        style={styles.searchInput}
-      />
+      <div style={styles.searchBox}>
+        <input
+          id="entry-search"
+          type="text"
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="Search by title, description, contributor, or place"
+          style={styles.searchInput}
+        />
+        {hasQuery && (
+          <button
+            type="button"
+            onClick={() => setQuery("")}
+            aria-label="Clear search"
+            style={styles.clearButton}
+          >
+            ×
+          </button>
+        )}
+      </div>
 
       <p style={styles.count}>
         entries in the archive: {visibleEntries.length} of {entries.length}
@@ -131,7 +160,7 @@ export default function Home() {
       {visibleEntries.length > 0 ? (
         <section style={styles.entries} aria-label="Archive entries">
           {visibleEntries.map((entry) => (
-            <EntryCard key={entry.title} {...entry} />
+            <EntryCard key={entry.title} {...entry} query={query} />
           ))}
         </section>
       ) : (
