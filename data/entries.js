@@ -34,6 +34,27 @@ const entries = [
     contributor: "Market Stall",
     place: "Psar Orussey",
   },
+  {
+    title: "Num Ansom Chek (នំអន្សមចេក)",
+    description:
+      "Glutinous rice wrapped in banana leaves, filled with ripe baby bananas and coconut milk, tightly bound with string and boiled for hours.",
+    contributor: "Grandma Touch",
+    place: "Psar Toul Tom Poung, Phnom Penh",
+  },
+  {
+    title: "Num Treap (នំទ្រាប)",
+    description:
+      "Sweet, sticky glutinous rice cake made with palm sugar, coconut cream, and toasted sesame seeds, served in dense, fragrant slices.",
+    contributor: "Market Vendor",
+    place: "Psar Boeung Keng Kang, Phnom Penh",
+  },
+  {
+    title: "Num Ah-Kor (នំអាកោ)",
+    description:
+      "Soft, spongy steamed rice cakes made from fermented rice batter, palm sugar, and coconut water, topped with freshly grated coconut.",
+    contributor: "Auntie Sophea",
+    place: "Psar Depo, Phnom Penh",
+  },
 ];
 
 export default entries;
