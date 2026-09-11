@@ -9,7 +9,7 @@ const styles = {
   wrap: {
     maxWidth: 720,
     margin: "0 auto",
-    padding: "80px 24px",
+    padding: "clamp(40px, 10vw, 80px) 24px",
   },
   kicker: {
     fontFamily: "'Courier New', monospace",
@@ -18,7 +18,7 @@ const styles = {
     letterSpacing: 1,
   },
   title: {
-    fontSize: 48,
+    fontSize: "clamp(32px, 8vw, 48px)",
     fontWeight: 700,
     margin: "16px 0 12px",
     lineHeight: 1.1,
@@ -165,8 +165,8 @@ export default function Home() {
         </section>
       ) : (
         <p style={styles.emptyState}>
-          No rice cakes match that search yet. Try another Khmer word or clear
-          the search.
+          No rice cakes match that search yet. Try another English or Khmer word,
+          or clear the search. មិនមាននំអង្ករត្រូវនឹងការស្វែងរកនេះទេ។
         </p>
       )}
 
