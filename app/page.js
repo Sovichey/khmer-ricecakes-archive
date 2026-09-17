@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import EntryCard from "../components/EntryCard";
+import AuthHeader from "../components/AuthHeader";
 import collection from "../collection.config.js";
 import entries from "../data/entries.js";
 
@@ -116,6 +117,7 @@ export default function Home() {
 
   return (
     <main style={styles.wrap}>
+      <AuthHeader />
       <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
       <h1 style={styles.title}>{collection.name}</h1>
       <p style={styles.description}>{collection.description}</p>
