@@ -20,6 +20,7 @@ function highlightText(text, query) {
 
 export default function EntryCard({
   title,
+  title_khmer,
   description,
   contributor,
   place,
@@ -30,6 +31,9 @@ export default function EntryCard({
     <article style={styles.card}>
       <img src={image} alt={`${title} rice cake`} style={styles.image} />
       <h3 style={styles.title}>{highlightText(title, query)}</h3>
+      {title_khmer && (
+        <p style={styles.titleKhmer}>{highlightText(title_khmer, query)}</p>
+      )}
       <p style={styles.description}>{highlightText(description, query)}</p>
       <footer style={styles.metaRow}>
         <p style={styles.meta}>
@@ -64,6 +68,12 @@ const styles = {
     margin: 0,
     color: "#E8EDF2",
     fontSize: 21,
+    lineHeight: 1.35,
+  },
+  titleKhmer: {
+    margin: 0,
+    color: "#2EE6A8",
+    fontSize: 17,
     lineHeight: 1.35,
   },
   description: {

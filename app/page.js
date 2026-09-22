@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EntryCard from "../components/EntryCard";
 import AuthHeader from "../components/AuthHeader";
 import collection from "../collection.config.js";
-import entries from "../data/entries.js";
+import { getSupabaseBrowserClient } from "../lib/supabase/client";
 
 const styles = {
   wrap: {
@@ -107,13 +107,42 @@ const styles = {
 
 export default function Home() {
   const [query, setQuery] = useState("");
+  const [entries, setEntries] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(null);
   const normalizedQuery = query.trim().toLocaleLowerCase();
   const hasQuery = normalizedQuery.length > 0;
   const visibleEntries = entries.filter((entry) =>
-    `${entry.title} ${entry.description} ${entry.contributor} ${entry.place}`
+    `${entry.title} ${entry.title_khmer ?? ""} ${entry.description} ${entry.contributor} ${entry.place ?? ""}`
       .toLocaleLowerCase()
       .includes(normalizedQuery),
   );
+
+  useEffect(() => {
+    let cancelled = false;
+    const supabase = getSupabaseBrowserClient();
+    supabase
+      .from("entries")
+      .select("*")
+      .order("created_at", { ascending: false })
+      .then(({ data, error }) => {
+        if (cancelled) return;
+        if (error) {
+          setLoadError(error.message);
+        } else {
+          setEntries(data ?? []);
+        }
+        setLoading(false);
+      })
+      .catch((error) => {
+        if (cancelled) return;
+        setLoadError(error.message ?? String(error));
+        setLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <main style={styles.wrap}>
@@ -156,19 +185,27 @@ export default function Home() {
       </div>
 
       <p style={styles.count}>
-        entries in the archive: {visibleEntries.length} of {entries.length}
+        {loading
+          ? "Loading the archive…"
+          : loadError
+            ? "The archive could not be loaded right now."
+            : `entries in the archive: ${visibleEntries.length} of ${entries.length}`}
       </p>
 
-      {visibleEntries.length > 0 ? (
+      {loading || loadError ? null : visibleEntries.length > 0 ? (
         <section style={styles.entries} aria-label="Archive entries">
           {visibleEntries.map((entry) => (
-            <EntryCard key={entry.title} {...entry} query={query} />
+            <EntryCard key={entry.id} {...entry} query={query} />
           ))}
         </section>
-      ) : (
+      ) : hasQuery ? (
         <p style={styles.emptyState}>
           No rice cakes match that search yet. Try another English or Khmer word,
           or clear the search. មិនមាននំអង្ករត្រូវនឹងការស្វែងរកនេះទេ។
+        </p>
+      ) : (
+        <p style={styles.emptyState}>
+          No entries in the archive yet. Come back soon.
         </p>
       )}
 
