@@ -1,11 +1,11 @@
 const entries = [
   {
-    title: "Num Kachai (នំកូឆាយ)",
+    title: "Num Kuchai (នំគូឆាយ)",
     description:
       "Chewy rice flour cake stuffed with seasoned garlic chives, pan-fried on flat griddles until crispy, served with sweet garlic-chili soy dip.",
     contributor: "Sovichey",
     place: "Psar Kandal, Phnom Penh",
-    image: "/assets/entries/num-kachai.png",
+    image: "/assets/entries/num-kuchai.png",
   },
   {
     title: "Num Krok (នំគ្រក់)",
