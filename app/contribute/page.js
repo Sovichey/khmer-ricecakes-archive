@@ -1,6 +1,6 @@
 import Link from "next/link";
 import AuthHeader from "../../components/AuthHeader";
-import ContributeForm from "../../components/ContributeForm";
+import EntryForm from "../../components/EntryForm";
 import { createSupabaseServerClient } from "../../lib/supabase/server";
 
 export default async function ContributePage() {
@@ -25,7 +25,7 @@ export default async function ContributePage() {
       </p>
 
       {user ? (
-        <ContributeForm />
+        <EntryForm mode="create" />
       ) : (
         <div style={styles.card}>
           <p style={styles.loginText}>

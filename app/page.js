@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import EntryCard from "../components/EntryCard";
 import AuthHeader from "../components/AuthHeader";
 import collection from "../collection.config.js";
@@ -64,6 +65,11 @@ const styles = {
     display: "grid",
     gap: 18,
     marginTop: 28,
+  },
+  entryLink: {
+    textDecoration: "none",
+    color: "inherit",
+    display: "block",
   },
   searchLabel: {
     display: "block",
@@ -195,7 +201,9 @@ export default function Home() {
       {loading || loadError ? null : visibleEntries.length > 0 ? (
         <section style={styles.entries} aria-label="Archive entries">
           {visibleEntries.map((entry) => (
-            <EntryCard key={entry.id} {...entry} query={query} />
+            <Link key={entry.id} href={`/entries/${entry.id}`} style={styles.entryLink}>
+              <EntryCard {...entry} query={query} />
+            </Link>
           ))}
         </section>
       ) : hasQuery ? (
