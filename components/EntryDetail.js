@@ -36,11 +36,12 @@ export default function EntryDetail({ entryId, isOwner }) {
 
   return (
     <div style={styles.bar}>
-      <Link href={`/entries/${entryId}/edit`} style={styles.edit}>
+      <Link href={`/entries/${entryId}/edit`} className="btn" style={styles.edit}>
         Edit
       </Link>
       <button
         type="button"
+        className="btn"
         onClick={handleDelete}
         disabled={deleting}
         style={deleting ? styles.deleteDisabled : styles.delete}
@@ -57,9 +58,9 @@ export default function EntryDetail({ entryId, isOwner }) {
 }
 
 const styles = {
-  bar: { display: "flex", alignItems: "center", flexWrap: "wrap", gap: 12, marginTop: 24, paddingTop: 20, borderTop: "1px solid #2E3644" },
-  edit: { padding: "10px 14px", borderRadius: 8, backgroundColor: "#2EE6A8", color: "#11223f", fontSize: 15, fontWeight: 700, textDecoration: "none" },
-  delete: { padding: "10px 14px", border: "1px solid #FF9E9E", borderRadius: 8, backgroundColor: "transparent", color: "#FF9E9E", fontSize: 15, fontWeight: 700, cursor: "pointer" },
-  deleteDisabled: { padding: "10px 14px", border: "1px solid #5A6373", borderRadius: 8, backgroundColor: "transparent", color: "#5A6373", fontSize: 15, fontWeight: 700, cursor: "not-allowed" },
-  status: { color: "#97A1B3", fontSize: 14, margin: 0 },
+  bar: { display: "flex", alignItems: "center", flexWrap: "wrap", gap: 12, marginTop: 24, paddingTop: 20, borderTop: "1px solid var(--border)" },
+  edit: { padding: "10px 14px", borderRadius: 8, backgroundColor: "var(--accent)", color: "var(--accent-ink)", fontSize: 15, fontWeight: 700, textDecoration: "none" },
+  delete: { padding: "10px 14px", border: "1px solid var(--error)", borderRadius: 8, backgroundColor: "transparent", color: "var(--error)", fontSize: 15, fontWeight: 700, cursor: "pointer" },
+  deleteDisabled: { padding: "10px 14px", border: "1px solid var(--muted-bg)", borderRadius: 8, backgroundColor: "transparent", color: "var(--muted-bg)", fontSize: 15, fontWeight: 700, cursor: "not-allowed" },
+  status: { color: "var(--muted)", fontSize: 14, margin: 0 },
 };

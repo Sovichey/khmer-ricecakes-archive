@@ -31,7 +31,7 @@ export default async function ContributePage() {
           <p style={styles.loginText}>
             Only logged-in contributors can add entries to the archive.
           </p>
-          <Link href="/login" style={styles.loginButton}>
+          <Link href="/login" className="btn" style={styles.loginButton}>
             Log in to contribute
           </Link>
         </div>
@@ -42,23 +42,23 @@ export default async function ContributePage() {
 
 const styles = {
   wrap: { maxWidth: 720, margin: "0 auto", padding: "clamp(40px, 10vw, 80px) 24px" },
-  kicker: { fontFamily: "'Courier New', monospace", color: "#2EE6A8", fontSize: 14, letterSpacing: 1 },
-  title: { fontSize: "clamp(32px, 8vw, 48px)", margin: "16px 0 12px", lineHeight: 1.1 },
-  description: { fontSize: 18, color: "#97A1B3", lineHeight: 1.6, margin: 0 },
+  kicker: { fontFamily: "'Courier New', monospace", color: "var(--accent)", fontSize: 14, letterSpacing: 1 },
+  title: { fontSize: "clamp(32px, 8vw, 48px)", margin: "16px 0 12px", lineHeight: 1.1, color: "var(--text)", fontWeight: 600 },
+  description: { fontSize: 18, color: "var(--muted)", lineHeight: 1.6, margin: 0 },
   card: {
     marginTop: 32,
     padding: 24,
-    backgroundColor: "#1C222C",
-    border: "1px solid #2E3644",
+    backgroundColor: "var(--surface)",
+    border: "1px solid var(--border)",
     borderRadius: 10,
   },
-  loginText: { color: "#E8EDF2", lineHeight: 1.6, margin: "0 0 16px" },
+  loginText: { color: "var(--text)", lineHeight: 1.6, margin: "0 0 16px" },
   loginButton: {
     display: "inline-block",
     padding: "12px 16px",
     borderRadius: 8,
-    backgroundColor: "#2EE6A8",
-    color: "#11223f",
+    backgroundColor: "var(--accent)",
+    color: "var(--accent-ink)",
     fontSize: 16,
     fontWeight: 700,
     textDecoration: "none",

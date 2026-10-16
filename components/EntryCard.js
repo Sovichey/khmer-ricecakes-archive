@@ -28,7 +28,7 @@ export default function EntryCard({
   query = "",
 }) {
   return (
-    <article style={styles.card}>
+    <article className="card" style={styles.card}>
       <img src={image} alt={`${title} rice cake`} style={styles.image} />
       <h3 style={styles.title}>{highlightText(title, query)}</h3>
       {title_khmer && (
@@ -49,9 +49,9 @@ export default function EntryCard({
 }
 const styles = {
   card: {
-    backgroundColor: "#1C222C",
-    border: "1px solid #2E3644",
-    borderRadius: 8,
+    backgroundColor: "var(--surface)",
+    border: "1px solid var(--border)",
+    borderRadius: 10,
     padding: 22,
     display: "flex",
     flexDirection: "column",
@@ -61,24 +61,24 @@ const styles = {
     width: "100%",
     height: 220,
     objectFit: "cover",
-    borderRadius: 6,
-    backgroundColor: "#2E3644",
+    borderRadius: 8,
+    backgroundColor: "var(--border)",
   },
   title: {
     margin: 0,
-    color: "#E8EDF2",
+    color: "var(--text)",
     fontSize: 21,
     lineHeight: 1.35,
   },
   titleKhmer: {
     margin: 0,
-    color: "#2EE6A8",
+    color: "var(--accent)",
     fontSize: 17,
     lineHeight: 1.35,
   },
   description: {
     margin: 0,
-    color: "#97A1B3",
+    color: "var(--muted)",
     fontSize: 15,
     lineHeight: 1.65,
     overflowWrap: "break-word",
@@ -89,22 +89,22 @@ const styles = {
     gap: 28,
     marginTop: "auto",
     paddingTop: 12,
-    borderTop: "1px solid #2E3644",
+    borderTop: "1px solid var(--border)",
   },
   meta: {
     margin: 0,
-    color: "#E8EDF2",
+    color: "var(--text)",
     fontSize: 14,
   },
   metaLabel: {
-    color: "#97A1B3",
+    color: "var(--muted)",
     fontSize: 11,
     fontWeight: 900,
     textTransform: "uppercase",
   },
   highlight: {
-    backgroundColor: "#2EE6A8",
-    color: "#11223f",
+    backgroundColor: "var(--accent)",
+    color: "var(--bg)",
     borderRadius: 2,
     padding: "0 2px",
   },

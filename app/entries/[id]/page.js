@@ -35,7 +35,7 @@ export default async function EntryPage({ params }) {
           This entry does not exist, or it could not be loaded right now.
         </p>
         <p style={styles.backLink}>
-          <Link href="/" style={styles.link}>Back to the archive</Link>
+          <Link href="/" className="text-link" style={styles.link}>Back to the archive</Link>
         </p>
       </main>
     );
@@ -69,7 +69,7 @@ export default async function EntryPage({ params }) {
       </article>
       <EntryDetail entryId={entry.id} isOwner={isOwner} />
       <p style={styles.backLink}>
-        <Link href="/" style={styles.link}>← Back to the archive</Link>
+        <Link href="/" className="text-link" style={styles.link}>← Back to the archive</Link>
       </p>
     </main>
   );
@@ -77,14 +77,14 @@ export default async function EntryPage({ params }) {
 
 const styles = {
   wrap: { maxWidth: 720, margin: "0 auto", padding: "clamp(40px, 10vw, 80px) 24px" },
-  kicker: { fontFamily: "'Courier New', monospace", color: "#2EE6A8", fontSize: 14, letterSpacing: 1 },
-  title: { fontSize: "clamp(32px, 8vw, 48px)", margin: "16px 0 4px", lineHeight: 1.15 },
-  titleKhmer: { color: "#2EE6A8", fontSize: 18, margin: "0 0 16px" },
-  description: { fontSize: 17, color: "#97A1B3", lineHeight: 1.7, margin: 0 },
+  kicker: { fontFamily: "'Courier New', monospace", color: "var(--accent)", fontSize: 14, letterSpacing: 1 },
+  title: { fontSize: "clamp(32px, 8vw, 48px)", margin: "16px 0 4px", lineHeight: 1.15, color: "var(--text)", fontWeight: 600 },
+  titleKhmer: { color: "var(--accent)", fontSize: 18, margin: "0 0 16px" },
+  description: { fontSize: 17, color: "var(--muted)", lineHeight: 1.7, margin: 0 },
   article: { display: "grid", gap: 10 },
-  image: { width: "100%", aspectRatio: "16 / 10", objectFit: "cover", borderRadius: 10, backgroundColor: "#2E3644" },
-  meta: { color: "#E8EDF2", fontSize: 15, margin: "8px 0 0" },
-  metaLabel: { color: "#97A1B3", fontSize: 11, fontWeight: 900, textTransform: "uppercase" },
+  image: { width: "100%", aspectRatio: "16 / 10", objectFit: "cover", borderRadius: 10, backgroundColor: "var(--border)" },
+  meta: { color: "var(--text)", fontSize: 15, margin: "8px 0 0" },
+  metaLabel: { color: "var(--muted)", fontSize: 11, fontWeight: 900, textTransform: "uppercase" },
   backLink: { marginTop: 28 },
-  link: { color: "#2EE6A8" },
+  link: { color: "var(--accent)" },
 };

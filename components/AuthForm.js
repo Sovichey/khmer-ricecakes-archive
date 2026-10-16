@@ -40,7 +40,7 @@ export default function AuthForm({ mode }) {
       <input id="email" type="email" required value={email} onChange={(event) => setEmail(event.target.value)} style={styles.input} />
       <label htmlFor="password" style={styles.label}>Password</label>
       <input id="password" type="password" required minLength={6} value={password} onChange={(event) => setPassword(event.target.value)} style={styles.input} />
-      <button type="submit" style={styles.button}>{isLogin ? "Log in" : "Sign up"}</button>
+      <button type="submit" className="btn" style={styles.button}>{isLogin ? "Log in" : "Sign up"}</button>
       {error && <p role="alert" style={styles.error}>{error}</p>}
       {message && <p role="status" style={styles.message}>{message}</p>}
     </form>
@@ -49,9 +49,9 @@ export default function AuthForm({ mode }) {
 
 const styles = {
   form: { display: "grid", gap: 10, marginTop: 28 },
-  label: { color: "#97A1B3", fontSize: 14 },
-  input: { padding: "12px 14px", border: "1px solid #2E3644", borderRadius: 8, backgroundColor: "#1C222C", color: "#E8EDF2", fontSize: 16 },
-  button: { marginTop: 10, padding: "12px 16px", border: 0, borderRadius: 8, backgroundColor: "#2EE6A8", color: "#11223f", fontSize: 16, fontWeight: 700, cursor: "pointer" },
-  error: { color: "#FF9E9E", margin: "8px 0 0" },
-  message: { color: "#2EE6A8", margin: "8px 0 0" },
+  label: { color: "var(--muted)", fontSize: 14 },
+  input: { padding: "12px 14px", border: "1px solid var(--border)", borderRadius: 8, backgroundColor: "var(--surface)", color: "var(--text)", fontSize: 16 },
+  button: { marginTop: 10, padding: "12px 16px", border: 0, borderRadius: 8, backgroundColor: "var(--accent)", color: "var(--accent-ink)", fontSize: 16, fontWeight: 700, cursor: "pointer" },
+  error: { color: "var(--error)", margin: "8px 0 0" },
+  message: { color: "var(--accent)", margin: "8px 0 0" },
 };

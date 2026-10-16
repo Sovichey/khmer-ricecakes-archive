@@ -167,6 +167,7 @@ export default function EntryForm({ mode = "create", entryId = null, initialValu
 
       <button
         type="submit"
+        className="btn"
         disabled={submitting}
         style={submitting ? styles.buttonDisabled : styles.button}
       >
@@ -178,13 +179,13 @@ export default function EntryForm({ mode = "create", entryId = null, initialValu
 
 const styles = {
   form: { display: "grid", gap: 18, marginTop: 32 },
-  input: { boxSizing: "border-box", width: "100%", padding: "12px 14px", border: "1px solid #2E3644", borderRadius: 8, backgroundColor: "#1C222C", color: "#E8EDF2", fontSize: 16 },
-  textarea: { boxSizing: "border-box", width: "100%", padding: "12px 14px", border: "1px solid #2E3644", borderRadius: 8, backgroundColor: "#1C222C", color: "#E8EDF2", fontSize: 16, fontFamily: "inherit", minHeight: 140, resize: "vertical" },
-  select: { boxSizing: "border-box", width: "100%", padding: "12px 14px", border: "1px solid #2E3644", borderRadius: 8, backgroundColor: "#1C222C", color: "#E8EDF2", fontSize: 16 },
-  fileInput: { color: "#97A1B3", fontSize: 14 },
-  fileName: { margin: 0, color: "#97A1B3", fontSize: 13, lineHeight: 1.5 },
-  preview: { width: 160, height: 120, objectFit: "cover", borderRadius: 6, border: "1px solid #2E3644" },
-  submitError: { color: "#FF9E9E", margin: 0, lineHeight: 1.5 },
-  button: { padding: "12px 16px", border: 0, borderRadius: 8, backgroundColor: "#2EE6A8", color: "#11223f", fontSize: 16, fontWeight: 700, cursor: "pointer" },
-  buttonDisabled: { padding: "12px 16px", border: 0, borderRadius: 8, backgroundColor: "#5A6373", color: "#11223f", fontSize: 16, fontWeight: 700, cursor: "not-allowed" },
+  input: { boxSizing: "border-box", width: "100%", padding: "12px 14px", border: "1px solid var(--border)", borderRadius: 8, backgroundColor: "var(--surface)", color: "var(--text)", fontSize: 16 },
+  textarea: { boxSizing: "border-box", width: "100%", padding: "12px 14px", border: "1px solid var(--border)", borderRadius: 8, backgroundColor: "var(--surface)", color: "var(--text)", fontSize: 16, fontFamily: "inherit", minHeight: 140, resize: "vertical" },
+  select: { boxSizing: "border-box", width: "100%", padding: "12px 14px", border: "1px solid var(--border)", borderRadius: 8, backgroundColor: "var(--surface)", color: "var(--text)", fontSize: 16 },
+  fileInput: { color: "var(--muted)", fontSize: 14 },
+  fileName: { margin: 0, color: "var(--muted)", fontSize: 13, lineHeight: 1.5 },
+  preview: { width: 160, height: 120, objectFit: "cover", borderRadius: 6, border: "1px solid var(--border)" },
+  submitError: { color: "var(--error)", margin: 0, lineHeight: 1.5 },
+  button: { padding: "12px 16px", border: 0, borderRadius: 8, backgroundColor: "var(--accent)", color: "var(--accent-ink)", fontSize: 16, fontWeight: 700, cursor: "pointer" },
+  buttonDisabled: { padding: "12px 16px", border: 0, borderRadius: 8, backgroundColor: "var(--muted-bg)", color: "var(--bg)", fontSize: 16, fontWeight: 700, cursor: "not-allowed" },
 };

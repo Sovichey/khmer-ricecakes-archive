@@ -1,0 +1,79 @@
+/* ---------------------------------------------------------------------------
+   Khmer Living Archive — global design system.
+   Warm palette of rice, palm sugar, and cream, kept as CSS variables so the
+   whole site shares one set of colors. Components use var(--token) in their
+   inline styles; this file also carries the small interactions that inline
+   styles can't express (focus, hover, selection).
+   --------------------------------------------------------------------------- */
+
+:root {
+  --bg: #161110;          /* page background — deep warm charcoal */
+  --surface: #1f1812;     /* cards, panels, form fields */
+  --border: #382b1f;      /* hairline borders */
+  --text: #f4ebdb;        /* primary text — warm cream */
+  --muted: #ab957f;       /* secondary text */
+  --muted-bg: #4a3b2c;    /* disabled controls */
+  --accent: #f0a43a;      /* amber — palm sugar / golden rice */
+  --accent-ink: #201307;  /* dark text sitting on amber */
+  --error: #ef8d7f;       /* validation and delete */
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Editorial serif for headings — an archive of written culture. */
+h1,
+h2,
+h3 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 600;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+/* Visible keyboard focus for links, buttons, inputs, and selects. */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Reusable interactive classes, applied alongside existing inline styles. */
+
+.btn {
+  transition: filter 0.15s ease, transform 0.15s ease;
+}
+.btn:hover {
+  filter: brightness(1.08);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+
+.text-link {
+  transition: color 0.15s ease;
+}
+.text-link:hover {
+  text-decoration: underline;
+}
+
+.card {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}

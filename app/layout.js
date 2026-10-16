@@ -1,3 +1,4 @@
+import "./globals.css";
 import collection from "../collection.config.js";
 
 export const metadata = {
@@ -11,9 +12,9 @@ export default function RootLayout({ children }) {
       <body
         style={{
           margin: 0,
-          backgroundColor: "#11223f",
-          color: "#E8EDF2",
-          fontFamily: "-apple-system, Georgia, 'Segoe UI', Roboto, sans-serif",
+          backgroundColor: "var(--bg)",
+          color: "var(--text)",
+          fontFamily: "-apple-system, 'Segoe UI', Roboto, sans-serif",
           minHeight: "100vh",
         }}
       >

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import collection from "../collection.config.js";
 import { getSupabaseBrowserClient } from "../lib/supabase/client";
 
 export default function AuthHeader() {
@@ -21,25 +22,56 @@ export default function AuthHeader() {
   }
 
   return (
-    <nav aria-label="Account" style={styles.nav}>
-      {user ? (
-        <>
-          <span style={styles.email}>{user.email}</span>
-          <button type="button" onClick={logOut} style={styles.button}>Log out</button>
-        </>
-      ) : (
-        <>
-          <Link href="/login" style={styles.link}>Log in</Link>
-          <Link href="/signup" style={styles.button}>Sign up</Link>
-        </>
-      )}
-    </nav>
+    <header style={styles.header}>
+      <Link href="/" className="text-link" style={styles.brand}>
+        {collection.name}
+      </Link>
+      <nav aria-label="Account" style={styles.nav}>
+        {user ? (
+          <>
+            <span style={styles.email}>{user.email}</span>
+            <Link href="/contribute" className="btn" style={styles.button}>
+              Add entry
+            </Link>
+            <button type="button" onClick={logOut} className="btn" style={styles.button}>
+              Log out
+            </button>
+          </>
+        ) : (
+          <>
+            <Link href="/login" className="text-link" style={styles.link}>
+              Log in
+            </Link>
+            <Link href="/signup" className="btn" style={styles.button}>
+              Sign up
+            </Link>
+          </>
+        )}
+      </nav>
+    </header>
   );
 }
 
 const styles = {
-  nav: { display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 14, marginBottom: 28, minHeight: 34, flexWrap: "wrap" },
-  email: { color: "#97A1B3", fontSize: 14, overflowWrap: "anywhere" },
-  link: { color: "#2EE6A8", fontSize: 14, textDecoration: "none" },
-  button: { padding: "8px 12px", border: 0, borderRadius: 6, backgroundColor: "#2EE6A8", color: "#11223f", fontSize: 14, fontWeight: 700, textDecoration: "none", cursor: "pointer" },
+  header: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 16,
+    flexWrap: "wrap",
+    padding: "0 0 20px",
+    marginBottom: 28,
+    borderBottom: "1px solid var(--border)",
+  },
+  brand: {
+    color: "var(--text)",
+    fontSize: 17,
+    fontWeight: 800,
+    letterSpacing: 0.5,
+    textDecoration: "none",
+  },
+  nav: { display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" },
+  email: { color: "var(--muted)", fontSize: 14, overflowWrap: "anywhere" },
+  link: { color: "var(--accent)", fontSize: 14, textDecoration: "none" },
+  button: { padding: "8px 12px", border: 0, borderRadius: 6, backgroundColor: "var(--accent)", color: "var(--accent-ink)", fontSize: 14, fontWeight: 700, textDecoration: "none", cursor: "pointer" },
 };

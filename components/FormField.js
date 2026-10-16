@@ -16,6 +16,6 @@ export default function FormField({ label, htmlFor, error, children }) {
 
 const styles = {
   field: { display: "grid", gap: 6 },
-  label: { color: "#97A1B3", fontSize: 14, fontWeight: 700 },
-  error: { color: "#FF9E9E", fontSize: 13, margin: 0 },
+  label: { color: "var(--muted)", fontSize: 14, fontWeight: 700 },
+  error: { color: "var(--error)", fontSize: 13, margin: 0 },
 };

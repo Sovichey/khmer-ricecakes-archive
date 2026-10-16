@@ -35,7 +35,7 @@ export default async function EditEntryPage({ params }) {
           This entry does not exist, or it could not be loaded right now.
         </p>
         <p style={styles.backLink}>
-          <Link href="/" style={styles.link}>Back to the archive</Link>
+          <Link href="/" className="text-link" style={styles.link}>Back to the archive</Link>
         </p>
       </main>
     );
@@ -53,7 +53,7 @@ export default async function EditEntryPage({ params }) {
       ) : (
         <div style={styles.card}>
           <p style={styles.cardText}>Only the entry's owner can edit it.</p>
-          <Link href={`/entries/${entry.id}`} style={styles.link}>
+          <Link href={`/entries/${entry.id}`} className="text-link" style={styles.link}>
             Back to the entry
           </Link>
         </div>
@@ -64,11 +64,11 @@ export default async function EditEntryPage({ params }) {
 
 const styles = {
   wrap: { maxWidth: 720, margin: "0 auto", padding: "clamp(40px, 10vw, 80px) 24px" },
-  kicker: { fontFamily: "'Courier New', monospace", color: "#2EE6A8", fontSize: 14, letterSpacing: 1 },
-  title: { fontSize: "clamp(32px, 8vw, 48px)", margin: "16px 0 12px", lineHeight: 1.1 },
-  description: { fontSize: 17, color: "#97A1B3", lineHeight: 1.7, margin: 0 },
-  card: { marginTop: 32, padding: 24, backgroundColor: "#1C222C", border: "1px solid #2E3644", borderRadius: 10 },
-  cardText: { color: "#E8EDF2", lineHeight: 1.6, margin: "0 0 16px" },
+  kicker: { fontFamily: "'Courier New', monospace", color: "var(--accent)", fontSize: 14, letterSpacing: 1 },
+  title: { fontSize: "clamp(32px, 8vw, 48px)", margin: "16px 0 12px", lineHeight: 1.1, color: "var(--text)", fontWeight: 600 },
+  description: { fontSize: 17, color: "var(--muted)", lineHeight: 1.7, margin: 0 },
+  card: { marginTop: 32, padding: 24, backgroundColor: "var(--surface)", border: "1px solid var(--border)", borderRadius: 10 },
+  cardText: { color: "var(--text)", lineHeight: 1.6, margin: "0 0 16px" },
   backLink: { marginTop: 28 },
-  link: { color: "#2EE6A8" },
+  link: { color: "var(--accent)" },
 };
