@@ -187,5 +187,5 @@ const styles = {
   preview: { width: 160, height: 120, objectFit: "cover", borderRadius: 6, border: "1px solid var(--border)" },
   submitError: { color: "var(--error)", margin: 0, lineHeight: 1.5 },
   button: { padding: "12px 16px", border: 0, borderRadius: 8, backgroundColor: "var(--accent)", color: "var(--accent-ink)", fontSize: 16, fontWeight: 700, cursor: "pointer" },
-  buttonDisabled: { padding: "12px 16px", border: 0, borderRadius: 8, backgroundColor: "var(--muted-bg)", color: "var(--bg)", fontSize: 16, fontWeight: 700, cursor: "not-allowed" },
+  buttonDisabled: { padding: "12px 16px", border: 0, borderRadius: 8, backgroundColor: "var(--muted-bg)", color: "var(--muted)", fontSize: 16, fontWeight: 700, cursor: "not-allowed" },
 };

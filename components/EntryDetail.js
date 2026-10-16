@@ -61,6 +61,6 @@ const styles = {
   bar: { display: "flex", alignItems: "center", flexWrap: "wrap", gap: 12, marginTop: 24, paddingTop: 20, borderTop: "1px solid var(--border)" },
   edit: { padding: "10px 14px", borderRadius: 8, backgroundColor: "var(--accent)", color: "var(--accent-ink)", fontSize: 15, fontWeight: 700, textDecoration: "none" },
   delete: { padding: "10px 14px", border: "1px solid var(--error)", borderRadius: 8, backgroundColor: "transparent", color: "var(--error)", fontSize: 15, fontWeight: 700, cursor: "pointer" },
-  deleteDisabled: { padding: "10px 14px", border: "1px solid var(--muted-bg)", borderRadius: 8, backgroundColor: "transparent", color: "var(--muted-bg)", fontSize: 15, fontWeight: 700, cursor: "not-allowed" },
+  deleteDisabled: { padding: "10px 14px", border: "1px solid var(--muted-bg)", borderRadius: 8, backgroundColor: "transparent", color: "var(--muted)", fontSize: 15, fontWeight: 700, cursor: "not-allowed" },
   status: { color: "var(--muted)", fontSize: 14, margin: 0 },
 };

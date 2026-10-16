@@ -1,21 +1,22 @@
 /* ---------------------------------------------------------------------------
    Khmer Living Archive — global design system.
-   Warm palette of rice, palm sugar, and cream, kept as CSS variables so the
-   whole site shares one set of colors. Components use var(--token) in their
-   inline styles; this file also carries the small interactions that inline
-   styles can't express (focus, hover, selection).
+   Light, warm "market notebook" theme: cream paper, white cards, and a
+   terracotta accent (clay / palm-sugar glaze). Kept as CSS variables so the
+   whole site shares one palette; components use var(--token) in their inline
+   styles, and this file carries the interactions inline styles can't express
+   (focus, hover, selection).
    --------------------------------------------------------------------------- */
 
 :root {
-  --bg: #161110;          /* page background — deep warm charcoal */
-  --surface: #1f1812;     /* cards, panels, form fields */
-  --border: #382b1f;      /* hairline borders */
-  --text: #f4ebdb;        /* primary text — warm cream */
-  --muted: #ab957f;       /* secondary text */
-  --muted-bg: #4a3b2c;    /* disabled controls */
-  --accent: #f0a43a;      /* amber — palm sugar / golden rice */
-  --accent-ink: #201307;  /* dark text sitting on amber */
-  --error: #ef8d7f;       /* validation and delete */
+  --bg: #faf6ee;          /* page background — warm cream paper */
+  --surface: #ffffff;     /* cards, panels, form fields */
+  --border: #e8dcc7;      /* hairline borders */
+  --text: #2f2418;        /* primary text — dark warm brown */
+  --muted: #85705a;       /* secondary text */
+  --muted-bg: #e0d4bf;    /* disabled controls */
+  --accent: #a6461f;      /* terracotta — clay / palm-sugar glaze */
+  --accent-ink: #fff8f0;  /* near-white text sitting on accent */
+  --error: #b3402f;       /* validation and delete */
 }
 
 * {
@@ -57,7 +58,7 @@ h3 {
   transition: filter 0.15s ease, transform 0.15s ease;
 }
 .btn:hover {
-  filter: brightness(1.08);
+  filter: brightness(0.95);
 }
 .btn:active {
   transform: translateY(1px);
@@ -75,5 +76,5 @@ h3 {
 }
 .card:hover {
   border-color: var(--accent);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 10px 24px rgba(80, 60, 35, 0.14);
 }

@@ -61,7 +61,7 @@ const styles = {
     paddingTop: 24,
     borderTop: "1px solid var(--border)",
     fontSize: 13,
-    color: "var(--muted-bg)",
+    color: "var(--muted)",
   },
   entries: {
     display: "grid",
