@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { unstable_rethrow } from "next/navigation";
 import AuthHeader from "../../components/AuthHeader";
 import EntryForm from "../../components/EntryForm";
 import { createSupabaseServerClient } from "../../lib/supabase/server";
@@ -11,6 +12,7 @@ export default async function ContributePage() {
     const { data } = await supabase.auth.getUser();
     user = data.user ?? null;
   } catch (error) {
+    unstable_rethrow(error);
     console.error("Contribute: could not check the session.", error);
   }
 

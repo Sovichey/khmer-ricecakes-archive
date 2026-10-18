@@ -10,27 +10,35 @@ export default function AuthForm({ mode }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const isLogin = mode === "login";
 
   async function handleSubmit(event) {
     event.preventDefault();
+    if (submitting) return;
     setError("");
     setMessage("");
-    const supabase = getSupabaseBrowserClient();
-    const result = isLogin
-      ? await supabase.auth.signInWithPassword({ email, password })
-      : await supabase.auth.signUp({ email, password });
+    setSubmitting(true);
+    try {
+      const supabase = getSupabaseBrowserClient();
+      const result = isLogin
+        ? await supabase.auth.signInWithPassword({ email, password })
+        : await supabase.auth.signUp({ email, password });
 
-    if (result.error) {
-      setError(isLogin ? "Invalid email or password" : "Unable to create account");
-      return;
-    }
-
-    if (isLogin || result.data.session) {
-      router.push("/");
-      router.refresh();
-    } else {
-      setMessage("Account created. You can now log in.");
+      if (result.error) {
+        console.error("AuthForm: authentication request failed.", result.error);
+        setError(isLogin ? "Invalid email or password" : "Unable to create account");
+      } else if (isLogin || result.data.session) {
+        router.push("/");
+        router.refresh();
+      } else {
+        setMessage("Account created. You can now log in.");
+      }
+    } catch (requestError) {
+      console.error("AuthForm: unexpected authentication failure.", requestError);
+      setError("Could not reach the account service. Check your connection and try again.");
+    } finally {
+      setSubmitting(false);
     }
   }
 
@@ -40,7 +48,9 @@ export default function AuthForm({ mode }) {
       <input id="email" type="email" required value={email} onChange={(event) => setEmail(event.target.value)} style={styles.input} />
       <label htmlFor="password" style={styles.label}>Password</label>
       <input id="password" type="password" required minLength={6} value={password} onChange={(event) => setPassword(event.target.value)} style={styles.input} />
-      <button type="submit" className="btn" style={styles.button}>{isLogin ? "Log in" : "Sign up"}</button>
+      <button type="submit" className="btn" disabled={submitting} style={styles.button}>
+        {submitting ? "Please wait…" : isLogin ? "Log in" : "Sign up"}
+      </button>
       {error && <p role="alert" style={styles.error}>{error}</p>}
       {message && <p role="status" style={styles.message}>{message}</p>}
     </form>
