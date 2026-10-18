@@ -73,3 +73,7 @@ separately from the contributor field, which identifies who submitted an entry.
 No formal interviews were conducted, and generic legacy contributor values
 are displayed as “Contributor not recorded” rather than presented as named
 people.
+
+The Sprint 2 process journal lives in `JOURNAL.md`, and the Sprint 2
+reflection (what I built, what I would change, and a named worry with its
+cost) lives in `REFLECTION.md`.
