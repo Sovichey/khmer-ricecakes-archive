@@ -65,7 +65,7 @@ export default function EntryForm({ mode = "create", entryId = null, initialValu
 
   return (
     <form onSubmit={handleSubmit} noValidate style={styles.form}>
-      <FormField label="Title (English)" htmlFor="title" error={errors.title}>
+      <FormField label="Title (English) — ចំណងជើងអង់គ្លេស" htmlFor="title" error={errors.title}>
         <input
           id="title"
           type="text"
@@ -78,7 +78,7 @@ export default function EntryForm({ mode = "create", entryId = null, initialValu
         />
       </FormField>
 
-      <FormField label="Title (Khmer)" htmlFor="title_khmer" error={errors.title_khmer}>
+      <FormField label="Title (Khmer) — ចំណងជើងខ្មែរ" htmlFor="title_khmer" error={errors.title_khmer}>
         <input
           id="title_khmer"
           type="text"
@@ -92,7 +92,7 @@ export default function EntryForm({ mode = "create", entryId = null, initialValu
         />
       </FormField>
 
-      <FormField label="Description" htmlFor="description" error={errors.description}>
+      <FormField label="Description — ការពិពណ៌នា" htmlFor="description" error={errors.description}>
         <textarea
           id="description"
           required
@@ -106,7 +106,7 @@ export default function EntryForm({ mode = "create", entryId = null, initialValu
         />
       </FormField>
 
-      <FormField label="Contributor name" htmlFor="contributor" error={errors.contributor}>
+      <FormField label="Contributor name — ឈ្មោះអ្នករួមចំណែក" htmlFor="contributor" error={errors.contributor}>
         <input
           id="contributor"
           type="text"
@@ -120,7 +120,7 @@ export default function EntryForm({ mode = "create", entryId = null, initialValu
         />
       </FormField>
 
-      <FormField label="Place (optional)" htmlFor="place" error={errors.place}>
+      <FormField label="Place (optional) — ទីកន្លែង (ជម្រើស)" htmlFor="place" error={errors.place}>
         <select
           id="place"
           value={values.place}
@@ -137,7 +137,7 @@ export default function EntryForm({ mode = "create", entryId = null, initialValu
         </select>
       </FormField>
 
-      <FormField label={isEdit ? "Photo (optional)" : "Photo"} htmlFor="image" error={errors.image}>
+      <FormField label={isEdit ? "Photo (optional) — រូបថត (ជម្រើស)" : "Photo — រូបថត"} htmlFor="image" error={errors.image}>
         {isEdit && existingImage && (
           <img src={existingImage} alt="Current photo" style={styles.preview} />
         )}

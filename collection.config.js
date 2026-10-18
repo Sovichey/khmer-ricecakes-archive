@@ -18,7 +18,7 @@ const collection = {
   curator: "Sovichey RIM",
 
   // Where does your knowledge come from? A person, a place, a community.
-  source: "To be gathered from Khmer rice cake makers, families, and local markets",
+  source: "Oral knowledge and family food traditions shared by my grandparents.",
 
   province: "Phnom Penh, Cambodia",
 };

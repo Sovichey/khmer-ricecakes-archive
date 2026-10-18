@@ -1,3 +1,5 @@
+import { displayContributor } from "../lib/displayContributor";
+
 function highlightText(text, query) {
   const normalizedQuery = query.trim();
   if (!normalizedQuery) {
@@ -37,11 +39,11 @@ export default function EntryCard({
       <p style={styles.description}>{highlightText(description, query)}</p>
       <footer style={styles.metaRow}>
         <p style={styles.meta}>
-          <span style={styles.metaLabel}>Contributor</span>{" "}
-          {highlightText(contributor, query)}
+          <span style={styles.metaLabel}>Contributor — អ្នករួមចំណែក</span>{" "}
+          {highlightText(displayContributor(contributor), query)}
         </p>
         <p style={styles.meta}>
-          <span style={styles.metaLabel}>Place</span> {highlightText(place, query)}
+          <span style={styles.metaLabel}>Place — ទីកន្លែង</span> {highlightText(place, query)}
         </p>
       </footer>
     </article>

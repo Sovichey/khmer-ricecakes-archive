@@ -1,6 +1,7 @@
 import Link from "next/link";
 import AuthHeader from "../../../components/AuthHeader";
 import EntryDetail from "../../../components/EntryDetail";
+import { displayContributor } from "../../../lib/displayContributor";
 import { OWNER_COLUMN } from "../../../lib/schema";
 import { createSupabaseServerClient } from "../../../lib/supabase/server";
 
@@ -59,11 +60,12 @@ export default async function EntryPage({ params }) {
         )}
         <p style={styles.description}>{entry.description}</p>
         <p style={styles.meta}>
-          <span style={styles.metaLabel}>Contributor</span> {entry.contributor}
+          <span style={styles.metaLabel}>Contributor — អ្នករួមចំណែក</span>{" "}
+          {displayContributor(entry.contributor)}
         </p>
         {entry.place && (
           <p style={styles.meta}>
-            <span style={styles.metaLabel}>Place</span> {entry.place}
+            <span style={styles.metaLabel}>Place — ទីកន្លែង</span> {entry.place}
           </p>
         )}
       </article>
