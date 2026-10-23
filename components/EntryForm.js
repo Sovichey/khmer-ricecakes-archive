@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import FormField from "./FormField";
 import { getSupabaseBrowserClient } from "../lib/supabase/client";
 import { validateEntry, ALLOWED_IMAGE_TYPES } from "../lib/validateEntry";
@@ -28,6 +29,7 @@ export default function EntryForm({ mode = "create", entryId = null, initialValu
   const [errors, setErrors] = useState({});
   const [submitError, setSubmitError] = useState("");
   const [submitting, setSubmitting] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
 
   function update(field, value) {
     setValues((previous) => ({ ...previous, [field]: value }));
@@ -53,14 +55,34 @@ export default function EntryForm({ mode = "create", entryId = null, initialValu
         setSubmitError(saveResult.message);
         return;
       }
-      router.push(`/entries/${saveResult.entryId}`);
-      router.refresh();
+      if (isEdit) {
+        router.push(`/entries/${saveResult.entryId}`);
+        router.refresh();
+      } else {
+        // New contributions go into review instead of showing the entry page.
+        setSuccessMessage(
+          "Your entry has been submitted and is currently waiting for review.",
+        );
+      }
     } catch (error) {
       console.error("EntryForm: unexpected failure while saving.", error);
       setSubmitError("Something went wrong while saving. Please try again.");
     } finally {
       setSubmitting(false);
     }
+  }
+
+  if (successMessage) {
+    return (
+      <div style={styles.successCard}>
+        <p role="status" style={styles.successMessage}>
+          {successMessage}
+        </p>
+        <Link href="/" className="text-link" style={styles.homeLink}>
+          Back to the archive
+        </Link>
+      </div>
+    );
   }
 
   return (
@@ -186,6 +208,15 @@ const styles = {
   fileName: { margin: 0, color: "var(--muted)", fontSize: 13, lineHeight: 1.5 },
   preview: { width: 160, height: 120, objectFit: "cover", borderRadius: 6, border: "1px solid var(--border)" },
   submitError: { color: "var(--error)", margin: 0, lineHeight: 1.5 },
+  successCard: {
+    marginTop: 32,
+    padding: 24,
+    backgroundColor: "var(--surface)",
+    border: "1px solid var(--border)",
+    borderRadius: 10,
+  },
+  successMessage: { color: "var(--text)", lineHeight: 1.6, margin: "0 0 16px" },
+  homeLink: { color: "var(--accent)" },
   button: { padding: "12px 16px", border: 0, borderRadius: 8, backgroundColor: "var(--accent)", color: "var(--accent-ink)", fontSize: 16, fontWeight: 700, cursor: "pointer" },
   buttonDisabled: { padding: "12px 16px", border: 0, borderRadius: 8, backgroundColor: "var(--muted-bg)", color: "var(--muted)", fontSize: 16, fontWeight: 700, cursor: "not-allowed" },
 };

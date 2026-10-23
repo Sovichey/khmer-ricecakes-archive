@@ -30,6 +30,9 @@ export default function AuthHeader() {
         {user ? (
           <>
             <span style={styles.email}>{user.email}</span>
+            <Link href="/my-entries" className="text-link" style={styles.link}>
+              My entries
+            </Link>
             <Link href="/contribute" className="btn" style={styles.button}>
               Add entry
             </Link>
