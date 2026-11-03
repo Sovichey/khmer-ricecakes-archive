@@ -27,9 +27,9 @@ export default async function EditEntryPage({ params }) {
   }
   if (error || !entry) {
     return (
-      <main style={styles.wrap}>
+      <main className="page-shell" style={styles.wrap}>
         <AuthHeader />
-        <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
+        <p className="eyebrow" style={styles.kicker}>KHMER LIVING ARCHIVE</p>
         <h1 style={styles.title}>Entry not found</h1>
         <p style={styles.description}>
           This entry does not exist, or it could not be loaded right now.
@@ -44,9 +44,9 @@ export default async function EditEntryPage({ params }) {
   const isOwner = Boolean(user && entry[OWNER_COLUMN] === user.id);
 
   return (
-    <main style={styles.wrap}>
+    <main className="page-shell" style={styles.wrap}>
       <AuthHeader />
-      <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
+      <p className="eyebrow" style={styles.kicker}>KHMER LIVING ARCHIVE</p>
       <h1 style={styles.title}>Edit entry</h1>
       {isOwner ? (
         <EntryForm mode="edit" entryId={entry.id} initialValues={entry} />
@@ -63,8 +63,8 @@ export default async function EditEntryPage({ params }) {
 }
 
 const styles = {
-  wrap: { maxWidth: 720, margin: "0 auto", padding: "clamp(40px, 10vw, 80px) 24px" },
-  kicker: { fontFamily: "'Courier New', monospace", color: "var(--accent)", fontSize: 14, letterSpacing: 1 },
+  wrap: { maxWidth: 760, margin: "0 auto", padding: "36px 24px 72px" },
+  kicker: { margin: 0 },
   title: { fontSize: "clamp(32px, 8vw, 48px)", margin: "16px 0 12px", lineHeight: 1.1, color: "var(--text)", fontWeight: 600 },
   description: { fontSize: 17, color: "var(--muted)", lineHeight: 1.7, margin: 0 },
   card: { marginTop: 32, padding: 24, backgroundColor: "var(--surface)", border: "1px solid var(--border)", borderRadius: 10 },

@@ -12,7 +12,6 @@ export default function RootLayout({ children }) {
       <body
         style={{
           margin: 0,
-          backgroundColor: "var(--bg)",
           color: "var(--text)",
           fontFamily: "-apple-system, 'Segoe UI', Roboto, sans-serif",
           minHeight: "100vh",

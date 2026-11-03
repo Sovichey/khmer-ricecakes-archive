@@ -33,9 +33,9 @@ export default async function MyEntriesPage() {
 
   if (!user) {
     return (
-      <main style={styles.wrap}>
+      <main className="page-shell" style={styles.wrap}>
         <AuthHeader />
-        <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
+        <p className="eyebrow" style={styles.kicker}>KHMER LIVING ARCHIVE</p>
         <h1 style={styles.title}>My entries</h1>
         <div style={styles.card}>
           <p style={styles.cardText}>
@@ -61,9 +61,9 @@ export default async function MyEntriesPage() {
   }
 
   return (
-    <main style={styles.wrap}>
+    <main className="page-shell" style={styles.wrap}>
       <AuthHeader />
-      <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
+      <p className="eyebrow" style={styles.kicker}>KHMER LIVING ARCHIVE</p>
       <h1 style={styles.title}>My entries</h1>
       <p style={styles.description}>
         The entries you contributed, with their review status.
@@ -99,8 +99,8 @@ export default async function MyEntriesPage() {
 }
 
 const styles = {
-  wrap: { maxWidth: 720, margin: "0 auto", padding: "clamp(40px, 10vw, 80px) 24px" },
-  kicker: { fontFamily: "'Courier New', monospace", color: "var(--accent)", fontSize: 14, letterSpacing: 1 },
+  wrap: { maxWidth: 820, margin: "0 auto", padding: "36px 24px 72px" },
+  kicker: { margin: 0 },
   title: { fontSize: "clamp(32px, 8vw, 48px)", margin: "16px 0 12px", lineHeight: 1.1, color: "var(--text)", fontWeight: 600 },
   description: { fontSize: 18, color: "var(--muted)", lineHeight: 1.6, margin: 0 },
   card: {

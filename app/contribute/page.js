@@ -17,9 +17,9 @@ export default async function ContributePage() {
   }
 
   return (
-    <main style={styles.wrap}>
+    <main className="page-shell" style={styles.wrap}>
       <AuthHeader />
-      <p style={styles.kicker}>KHMER LIVING ARCHIVE</p>
+      <p className="eyebrow" style={styles.kicker}>KHMER LIVING ARCHIVE</p>
       <h1 style={styles.title}>Contribute an entry</h1>
       <p style={styles.description}>
         Add a rice cake and its story to the archive. The entry is attached to
@@ -43,8 +43,8 @@ export default async function ContributePage() {
 }
 
 const styles = {
-  wrap: { maxWidth: 720, margin: "0 auto", padding: "clamp(40px, 10vw, 80px) 24px" },
-  kicker: { fontFamily: "'Courier New', monospace", color: "var(--accent)", fontSize: 14, letterSpacing: 1 },
+  wrap: { maxWidth: 760, margin: "0 auto", padding: "36px 24px 72px" },
+  kicker: { margin: 0 },
   title: { fontSize: "clamp(32px, 8vw, 48px)", margin: "16px 0 12px", lineHeight: 1.1, color: "var(--text)", fontWeight: 600 },
   description: { fontSize: 18, color: "var(--muted)", lineHeight: 1.6, margin: 0 },
   card: {

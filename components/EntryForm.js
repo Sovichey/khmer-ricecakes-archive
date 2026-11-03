@@ -200,10 +200,10 @@ export default function EntryForm({ mode = "create", entryId = null, initialValu
 }
 
 const styles = {
-  form: { display: "grid", gap: 18, marginTop: 32 },
-  input: { boxSizing: "border-box", width: "100%", padding: "12px 14px", border: "1px solid var(--border)", borderRadius: 8, backgroundColor: "var(--surface)", color: "var(--text)", fontSize: 16 },
-  textarea: { boxSizing: "border-box", width: "100%", padding: "12px 14px", border: "1px solid var(--border)", borderRadius: 8, backgroundColor: "var(--surface)", color: "var(--text)", fontSize: 16, fontFamily: "inherit", minHeight: 140, resize: "vertical" },
-  select: { boxSizing: "border-box", width: "100%", padding: "12px 14px", border: "1px solid var(--border)", borderRadius: 8, backgroundColor: "var(--surface)", color: "var(--text)", fontSize: 16 },
+  form: { display: "grid", gap: 18, marginTop: 32, padding: 26, backgroundColor: "var(--surface)", border: "1px solid var(--border)", borderRadius: 18, boxShadow: "var(--shadow)" },
+  input: { boxSizing: "border-box", width: "100%", padding: "13px 14px", border: "1px solid var(--border)", borderRadius: 10, backgroundColor: "var(--bg)", color: "var(--text)", fontSize: 16 },
+  textarea: { boxSizing: "border-box", width: "100%", padding: "13px 14px", border: "1px solid var(--border)", borderRadius: 10, backgroundColor: "var(--bg)", color: "var(--text)", fontSize: 16, fontFamily: "inherit", minHeight: 140, resize: "vertical" },
+  select: { boxSizing: "border-box", width: "100%", padding: "13px 14px", border: "1px solid var(--border)", borderRadius: 10, backgroundColor: "var(--bg)", color: "var(--text)", fontSize: 16 },
   fileInput: { color: "var(--muted)", fontSize: 14 },
   fileName: { margin: 0, color: "var(--muted)", fontSize: 13, lineHeight: 1.5 },
   preview: { width: 160, height: 120, objectFit: "cover", borderRadius: 6, border: "1px solid var(--border)" },

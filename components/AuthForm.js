@@ -58,10 +58,10 @@ export default function AuthForm({ mode }) {
 }
 
 const styles = {
-  form: { display: "grid", gap: 10, marginTop: 28 },
+  form: { display: "grid", gap: 12, marginTop: 28, padding: 24, backgroundColor: "var(--surface)", border: "1px solid var(--border)", borderRadius: 16, boxShadow: "var(--shadow)" },
   label: { color: "var(--muted)", fontSize: 14 },
-  input: { padding: "12px 14px", border: "1px solid var(--border)", borderRadius: 8, backgroundColor: "var(--surface)", color: "var(--text)", fontSize: 16 },
-  button: { marginTop: 10, padding: "12px 16px", border: 0, borderRadius: 8, backgroundColor: "var(--accent)", color: "var(--accent-ink)", fontSize: 16, fontWeight: 700, cursor: "pointer" },
+  input: { padding: "13px 14px", border: "1px solid var(--border)", borderRadius: 10, backgroundColor: "var(--bg)", color: "var(--text)", fontSize: 16 },
+  button: { marginTop: 10, padding: "13px 16px", border: 0, borderRadius: 10, backgroundColor: "var(--accent)", color: "var(--accent-ink)", fontSize: 16, fontWeight: 800, cursor: "pointer" },
   error: { color: "var(--error)", margin: "8px 0 0" },
   message: { color: "var(--accent)", margin: "8px 0 0" },
 };
