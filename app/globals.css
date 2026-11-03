@@ -1,22 +1,19 @@
 /* ---------------------------------------------------------------------------
    Khmer Living Archive — global design system.
-   Light, warm "market notebook" theme: cream paper, white cards, and a
-   terracotta accent (clay / palm-sugar glaze). Kept as CSS variables so the
-   whole site shares one palette; components use var(--token) in their inline
-   styles, and this file carries the interactions inline styles can't express
-   (focus, hover, selection).
+   Dark "evening market" theme: charcoal, moss, and warm paper accents.
+   Kept as CSS variables so the whole site shares one palette.
    --------------------------------------------------------------------------- */
 
 :root {
-  --bg: #faf6ee;          /* page background — warm cream paper */
-  --surface: #ffffff;     /* cards, panels, form fields */
-  --border: #e8dcc7;      /* hairline borders */
-  --text: #2f2418;        /* primary text — dark warm brown */
-  --muted: #85705a;       /* secondary text */
-  --muted-bg: #e0d4bf;    /* disabled controls */
-  --accent: #a6461f;      /* terracotta — clay / palm-sugar glaze */
-  --accent-ink: #fff8f0;  /* near-white text sitting on accent */
-  --error: #b3402f;       /* validation and delete */
+  --bg: #151a18;
+  --surface: #1d2521;
+  --border: #34423a;
+  --text: #edf1e9;
+  --muted: #a6b1a8;
+  --muted-bg: #2a3730;
+  --accent: #a9c49a;
+  --accent-ink: #172019;
+  --error: #e19a8e;
 }
 
 * {
@@ -72,9 +69,10 @@ h3 {
 }
 
 .card {
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 .card:hover {
   border-color: var(--accent);
-  box-shadow: 0 10px 24px rgba(80, 60, 35, 0.14);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.24);
+  transform: translateY(-3px);
 }

@@ -9,9 +9,9 @@ import { getSupabaseBrowserClient } from "../lib/supabase/client";
 
 const styles = {
   wrap: {
-    maxWidth: 720,
+    maxWidth: 860,
     margin: "0 auto",
-    padding: "clamp(40px, 10vw, 80px) 24px",
+    padding: "28px 24px 64px",
   },
   kicker: {
     fontFamily: "'Courier New', monospace",
@@ -20,24 +20,31 @@ const styles = {
     letterSpacing: 1,
   },
   title: {
-    fontSize: "clamp(32px, 8vw, 48px)",
+    fontSize: "clamp(36px, 7vw, 58px)",
     fontWeight: 600,
-    margin: "16px 0 12px",
+    margin: "18px 0 14px",
     lineHeight: 1.1,
     color: "var(--text)",
+    maxWidth: 680,
   },
   description: {
-    fontSize: 18,
+    fontSize: 19,
     color: "var(--muted)",
-    lineHeight: 1.6,
+    lineHeight: 1.65,
     margin: 0,
+    maxWidth: 680,
+  },
+  metadata: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+    gap: 12,
+    marginTop: 36,
   },
   card: {
-    marginTop: 48,
-    padding: 24,
-    backgroundColor: "var(--surface)",
+    padding: "18px 20px",
+    backgroundColor: "rgba(29, 37, 33, 0.82)",
     border: "1px solid var(--border)",
-    borderRadius: 10,
+    borderRadius: 12,
   },
   cardLabel: {
     fontFamily: "'Courier New', monospace",
@@ -52,9 +59,10 @@ const styles = {
   },
   count: {
     fontFamily: "'Courier New', monospace",
-    fontSize: 14,
+    fontSize: 13,
     color: "var(--accent)",
-    marginTop: 48,
+    margin: "28px 0 0",
+    letterSpacing: 0.3,
   },
   footer: {
     marginTop: 64,
@@ -65,8 +73,8 @@ const styles = {
   },
   entries: {
     display: "grid",
-    gap: 18,
-    marginTop: 28,
+    gap: 20,
+    marginTop: 16,
   },
   entryLink: {
     textDecoration: "none",
@@ -77,17 +85,17 @@ const styles = {
     display: "block",
     fontSize: 14,
     fontWeight: 700,
-    marginTop: 48,
+    marginTop: 36,
     marginBottom: 8,
     color: "var(--text)",
   },
   searchInput: {
     width: "100%",
     boxSizing: "border-box",
-    padding: "12px 44px 12px 14px",
+    padding: "14px 44px 14px 16px",
     border: "1px solid var(--border)",
-    borderRadius: 8,
-    backgroundColor: "var(--surface)",
+    borderRadius: 10,
+    backgroundColor: "rgba(29, 37, 33, 0.9)",
     color: "var(--text)",
     fontSize: 16,
   },
@@ -161,13 +169,15 @@ export default function Home() {
       <h1 style={styles.title}>{collection.name}</h1>
       <p style={styles.description}>{collection.description}</p>
 
-      <div style={styles.card}>
-        <p style={styles.cardLabel}>CURATED BY</p>
-        <p style={styles.cardValue}>{collection.curator}</p>
-      </div>
-      <div style={styles.card}>
-        <p style={styles.cardLabel}>SOURCE</p>
-        <p style={styles.cardValue}>{collection.source}</p>
+      <div style={styles.metadata}>
+        <div style={styles.card}>
+          <p style={styles.cardLabel}>CURATED BY</p>
+          <p style={styles.cardValue}>{collection.curator}</p>
+        </div>
+        <div style={styles.card}>
+          <p style={styles.cardLabel}>SOURCE</p>
+          <p style={styles.cardValue}>{collection.source}</p>
+        </div>
       </div>
 
       <label htmlFor="entry-search" style={styles.searchLabel}>

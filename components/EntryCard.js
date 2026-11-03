@@ -31,21 +31,27 @@ export default function EntryCard({
 }) {
   return (
     <article className="card" style={styles.card}>
-      <img src={image} alt={`${title} rice cake`} style={styles.image} />
-      <h3 style={styles.title}>{highlightText(title, query)}</h3>
-      {title_khmer && (
-        <p style={styles.titleKhmer}>{highlightText(title_khmer, query)}</p>
-      )}
-      <p style={styles.description}>{highlightText(description, query)}</p>
-      <footer style={styles.metaRow}>
-        <p style={styles.meta}>
-          <span style={styles.metaLabel}>Contributor — អ្នករួមចំណែក</span>{" "}
-          {highlightText(displayContributor(contributor), query)}
-        </p>
-        <p style={styles.meta}>
-          <span style={styles.metaLabel}>Place — ទីកន្លែង</span> {highlightText(place, query)}
-        </p>
-      </footer>
+      <div style={styles.imageFrame}>
+        <img src={image} alt={`${title} rice cake`} style={styles.image} />
+        <span style={styles.imageTag}>Archive entry</span>
+      </div>
+      <div style={styles.content}>
+        <h3 style={styles.title}>{highlightText(title, query)}</h3>
+        {title_khmer && (
+          <p style={styles.titleKhmer}>{highlightText(title_khmer, query)}</p>
+        )}
+        <p style={styles.description}>{highlightText(description, query)}</p>
+        <footer style={styles.metaRow}>
+          <p style={styles.meta}>
+            <span style={styles.metaLabel}>Contributor</span>
+            {highlightText(displayContributor(contributor), query)}
+          </p>
+          <p style={styles.meta}>
+            <span style={styles.metaLabel}>Place</span>
+            {highlightText(place, query)}
+          </p>
+        </footer>
+      </div>
     </article>
   );
 }
@@ -53,24 +59,47 @@ const styles = {
   card: {
     backgroundColor: "var(--surface)",
     border: "1px solid var(--border)",
-    borderRadius: 10,
-    padding: 22,
+    borderRadius: 16,
+    padding: 0,
+    overflow: "hidden",
+    display: "flex",
+    flexDirection: "column",
+  },
+  imageFrame: {
+    position: "relative",
+    backgroundColor: "var(--muted-bg)",
+  },
+  image: {
+    width: "100%",
+    height: 270,
+    objectFit: "cover",
+    backgroundColor: "var(--muted-bg)",
+    display: "block",
+  },
+  imageTag: {
+    position: "absolute",
+    left: 14,
+    bottom: 14,
+    padding: "6px 9px",
+    borderRadius: 999,
+    backgroundColor: "rgba(21, 26, 24, 0.82)",
+    color: "var(--accent)",
+    fontFamily: "'Courier New', monospace",
+    fontSize: 11,
+    letterSpacing: 0.4,
+    textTransform: "uppercase",
+  },
+  content: {
+    padding: "20px 20px 18px",
     display: "flex",
     flexDirection: "column",
     gap: 10,
   },
-  image: {
-    width: "100%",
-    height: 220,
-    objectFit: "cover",
-    borderRadius: 8,
-    backgroundColor: "var(--border)",
-  },
   title: {
     margin: 0,
     color: "var(--text)",
-    fontSize: 21,
-    lineHeight: 1.35,
+    fontSize: 25,
+    lineHeight: 1.2,
   },
   titleKhmer: {
     margin: 0,
@@ -90,23 +119,29 @@ const styles = {
     flexWrap: "wrap",
     gap: 28,
     marginTop: "auto",
-    paddingTop: 12,
+    paddingTop: 16,
     borderTop: "1px solid var(--border)",
+    gap: 10,
   },
   meta: {
     margin: 0,
-    color: "var(--text)",
+    color: "var(--muted)",
     fontSize: 14,
+    lineHeight: 1.45,
+    flex: "1 1 180px",
   },
   metaLabel: {
+    display: "block",
     color: "var(--muted)",
     fontSize: 11,
     fontWeight: 900,
     textTransform: "uppercase",
+    letterSpacing: 0.6,
+    marginBottom: 3,
   },
   highlight: {
-    backgroundColor: "var(--accent)",
-    color: "var(--bg)",
+    backgroundColor: "var(--muted-bg)",
+    color: "var(--text)",
     borderRadius: 2,
     padding: "0 2px",
   },
