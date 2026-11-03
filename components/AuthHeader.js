@@ -7,12 +7,19 @@ import { getSupabaseBrowserClient } from "../lib/supabase/client";
 
 export default function AuthHeader() {
   const [user, setUser] = useState(null);
+  const [isReviewer, setIsReviewer] = useState(false);
 
   useEffect(() => {
     const supabase = getSupabaseBrowserClient();
     supabase.auth.getUser().then(({ data }) => setUser(data.user));
+    supabase.rpc("is_reviewer").then(({ data }) => setIsReviewer(data === true));
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setUser(session?.user ?? null);
+      if (session?.user) {
+        supabase.rpc("is_reviewer").then(({ data }) => setIsReviewer(data === true));
+      } else {
+        setIsReviewer(false);
+      }
     });
     return () => listener.subscription.unsubscribe();
   }, []);
@@ -43,6 +50,11 @@ export default function AuthHeader() {
             <Link href="/my-entries" className="text-link" style={styles.link}>
               My entries
             </Link>
+            {isReviewer && (
+              <Link href="/review" className="text-link" style={styles.link}>
+                Review queue
+              </Link>
+            )}
             <Link href="/contribute" className="btn" style={styles.button}>
               <span aria-hidden="true">+</span> Add entry
             </Link>
