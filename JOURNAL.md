@@ -1,6 +1,6 @@
-﻿# Prompt journal — Sprint 2: khmer-ricecakes-archive
+# Prompt journal — khmer-ricecakes-archive
 
-This journal is the running record of the Sprint 2 build. Each entry keeps the
+This journal is the running record of the Sprint 2 and Sprint 3 builds. Each entry keeps the
 prompt that mattered most, the technique behind it, what the AI produced, and
 — most importantly — what I changed before accepting any diff. The commit
 trail at the bottom maps these entries to the actual git history.
@@ -147,3 +147,94 @@ maintainability.
 - Security boundary: the app-level owner checks are developer convenience; the real boundary is the RLS layer in the migration file. The live Supabase project must have that migration applied (Dashboard → SQL Editor) for the two-account attack to be refused on the server.
 - The collection is small and curated, not exhaustive. Sourcing is oral family knowledge; no formal interviews were conducted.
 - The Sprint 2 reflection (what I built, what I would change, and a named worry with its cost) lives in REFLECTION.md.
+
+---
+
+# Sprint 3 journal
+
+The repository records these three work sessions in the commit history:
+October 23 (entry review gate), November 3 (review queue), and November 6
+(post-review fixes and verification).
+
+**Prompt record note:** the original chat prompts for these three sessions
+are not preserved in the repository or available session history. The prompt
+text below is therefore a reconstruction from the changes, commit records,
+and review notes, not a verbatim transcript. Replace each reconstructed
+prompt with the original wording before submitting if the original chat is
+available.
+
+## Entry 1 — Week 10: the review gate (October 23)
+
+### The prompt that mattered most
+
+**Reconstructed — not verbatim:** “Make new contributions wait for review.
+Only published entries should appear on the public homepage. When an owner
+edits an entry, return it to pending review.”
+
+### Technique
+
+Gate-first workflow design — make publication status part of the contributor
+and public-browse flow before building reviewer controls.
+
+### What came back
+
+The app added a contributor-owned entries page, filtered the public archive to
+published entries, and sent owner edits back to pending status.
+
+### What I changed before accepting
+
+I rejected putting a user-editable status in the form and made the save flow
+assign `pending` for owner edits; I also kept the owner filter and the check
+that an update actually returned a row.
+
+## Entry 2 — Week 11: code review and the review queue (November 3)
+
+### The prompt that mattered most
+
+**Reconstructed — not verbatim:** “Add a reviewer-only queue of pending
+entries with Publish and Return actions. Keep the queue oldest-first, and
+change status only through the protected review RPC.”
+
+### Technique
+
+Trust-boundary review — treat the database RPC, not a hidden button or client
+role check, as the authority for changing publication status.
+
+### What came back
+
+The queue loaded pending entries oldest-first and added Publish and Return
+actions backed by `review_entry`.
+
+### What I changed before accepting
+
+I rejected the direct table update and the success check that only looked for
+an error: only an RPC result of `true` counts as a successful review, while
+an error-free `false` leaves the entry in the queue and shows failure.
+
+## Entry 3 — Week 12: fixes after review day (November 6)
+
+### The prompt that mattered most
+
+**Reconstructed — not verbatim:** “Fix the review feedback: verify that an
+owner can edit a returned entry and resubmit it as pending, keep publication
+status out of contributor-controlled form inputs, and confirm the public
+archive still filters to published entries.”
+
+### Technique
+
+Adversarial workflow testing — check the contributor, public, and reviewer
+views against the expected status transitions instead of relying on the
+buttons merely appearing to work.
+
+### What came back
+
+The final flow keeps the published-only public query, returns owner edits to
+pending, and uses the reviewer RPC’s boolean result to decide whether to
+remove a pending entry from the queue.
+
+### What I changed before accepting
+
+I verified the owner predicate and RPC boolean check, and kept `status`
+derived by the save flow instead of trusting a form value; I noted that the
+live two-account security checks must be verified against Supabase, not
+inferred from the UI.
