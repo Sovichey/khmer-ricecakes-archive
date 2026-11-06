@@ -1,4 +1,5 @@
 import { displayContributor } from "../lib/displayContributor";
+import Icon from "./Icon";
 
 function highlightText(text, query) {
   const normalizedQuery = query.trim();
@@ -38,7 +39,7 @@ export default function EntryCard({
         <img src={image} alt={`${displayTitle} rice cake`} style={styles.image} />
         <div style={styles.imageOverlay}>
           <span style={styles.imageTag}>Archive entry</span>
-          <span style={styles.imageArrow} aria-hidden="true">↗</span>
+          <span style={styles.imageArrow}><Icon name="arrow-up-right" size={18} /></span>
         </div>
       </div>
       <div style={styles.content}>
@@ -52,12 +53,12 @@ export default function EntryCard({
         <p style={styles.description}>{highlightText(description, query)}</p>
         <footer style={styles.metaRow}>
           <p style={styles.meta}>
-            <span style={styles.metaIcon} aria-hidden="true">✦</span>
+            <span style={styles.metaIcon}><Icon name="user-round" size={15} /></span>
             <span style={styles.metaLabel}>Contributor</span>
             {highlightText(displayContributor(contributor), query)}
           </p>
           <p style={styles.meta}>
-            <span style={styles.metaIcon} aria-hidden="true">⌖</span>
+            <span style={styles.metaIcon}><Icon name="map-pin" size={15} /></span>
             <span style={styles.metaLabel}>From</span>
             {highlightText(displayPlace, query)}
           </p>
@@ -68,9 +69,9 @@ export default function EntryCard({
 }
 const styles = {
   card: {
-    background: "linear-gradient(145deg, rgba(36, 30, 25, 0.98), rgba(27, 22, 18, 0.96))",
+    background: "var(--surface)",
     border: "1px solid var(--border)",
-    borderRadius: 20,
+    borderRadius: 18,
     padding: 0,
     overflow: "hidden",
     display: "flex",
@@ -83,7 +84,7 @@ const styles = {
   },
   image: {
     width: "100%",
-    height: 292,
+    aspectRatio: "1.65 / 1",
     objectFit: "cover",
     backgroundColor: "var(--muted-bg)",
     display: "block",
@@ -95,19 +96,17 @@ const styles = {
     display: "flex",
     alignItems: "flex-end",
     justifyContent: "space-between",
-    padding: 16,
-    background: "linear-gradient(180deg, transparent 48%, rgba(23, 20, 18, 0.72) 100%)",
+    padding: 14,
+    background: "linear-gradient(180deg, transparent 45%, rgba(8, 28, 20, 0.68) 100%)",
   },
   imageTag: {
-    padding: "6px 9px",
+    padding: "6px 10px",
     borderRadius: 999,
-    backgroundColor: "rgba(21, 26, 24, 0.82)",
+    backgroundColor: "rgba(8, 28, 20, 0.82)",
     color: "var(--text)",
-    fontFamily: "'Courier New', monospace",
     fontSize: 11,
-    letterSpacing: 0.4,
-    textTransform: "uppercase",
-    border: "1px solid rgba(245, 234, 215, 0.25)",
+    fontWeight: 600,
+    border: "1px solid rgba(244, 239, 223, 0.2)",
   },
   imageArrow: {
     display: "grid",
@@ -121,40 +120,40 @@ const styles = {
     fontWeight: 700,
   },
   content: {
-    padding: "22px 22px 20px",
+    padding: "19px 20px 18px",
     display: "flex",
     flexDirection: "column",
-    gap: 10,
+    gap: 11,
   },
   heading: {
     display: "grid",
-    gap: 7,
+    gap: 6,
   },
   category: {
     margin: 0,
     color: "var(--accent)",
-    fontFamily: "'Courier New', monospace",
     fontSize: 10,
     fontWeight: 700,
-    letterSpacing: 1.2,
+    letterSpacing: 1,
+    textTransform: "uppercase",
   },
   title: {
     margin: 0,
     color: "var(--text)",
-    fontSize: 27,
+    fontSize: 25,
     lineHeight: 1.12,
   },
   titleKhmer: {
     margin: 0,
     color: "var(--leaf)",
-    fontSize: 18,
+    fontSize: 17,
     lineHeight: 1.35,
   },
   description: {
     margin: 0,
     color: "var(--muted)",
     fontSize: 14,
-    lineHeight: 1.65,
+    lineHeight: 1.6,
     overflowWrap: "break-word",
     display: "-webkit-box",
     WebkitLineClamp: 3,
@@ -162,24 +161,23 @@ const styles = {
     overflow: "hidden",
   },
   metaRow: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: 9,
-    marginTop: "auto",
-    paddingTop: 17,
+    display: "grid",
+    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+    gap: 14,
+    marginTop: 2,
+    paddingTop: 14,
     borderTop: "1px solid var(--border)",
-    gap: 9,
   },
   meta: {
     display: "grid",
     gridTemplateColumns: "auto 1fr",
-    columnGap: 7,
+    columnGap: 6,
     margin: 0,
     color: "var(--muted)",
-    fontSize: 14,
-    lineHeight: 1.45,
-    flex: "1 1 150px",
+    fontSize: 12,
+    lineHeight: 1.4,
     alignItems: "center",
+    overflowWrap: "anywhere",
   },
   metaIcon: {
     gridRow: "1 / span 2",
@@ -189,10 +187,10 @@ const styles = {
   metaLabel: {
     display: "block",
     color: "var(--muted)",
-    fontSize: 11,
-    fontWeight: 900,
+    fontSize: 10,
+    fontWeight: 700,
     textTransform: "uppercase",
-    letterSpacing: 0.6,
+    letterSpacing: 0.5,
     marginBottom: 1,
     lineHeight: 1.1,
   },

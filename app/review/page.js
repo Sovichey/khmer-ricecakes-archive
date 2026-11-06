@@ -16,9 +16,9 @@ export default async function ReviewPage() {
 
   if (isReviewer !== true) {
     return (
-      <main className="page-shell" style={styles.wrap}>
+      <main className="page-shell archive-page" style={styles.wrap}>
         <AuthHeader />
-        <p style={styles.permission}>
+        <p className="archive-notice" style={styles.permission}>
           អ្នកមិនមានសិទ្ធិចូលមើលទំព័រនេះទេ / You do not have permission
           to access the review queue.
         </p>
@@ -39,7 +39,7 @@ export default async function ReviewPage() {
   }
 
   return (
-    <main className="page-shell" style={styles.wrap}>
+    <main className="page-shell archive-page" style={styles.wrap}>
       <AuthHeader />
       <p className="eyebrow" style={styles.kicker}>KHMER LIVING ARCHIVE</p>
       <h1 style={styles.title}>Review queue</h1>

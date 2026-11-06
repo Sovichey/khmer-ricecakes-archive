@@ -33,11 +33,11 @@ export default async function MyEntriesPage() {
 
   if (!user) {
     return (
-      <main className="page-shell" style={styles.wrap}>
+      <main className="page-shell archive-page" style={styles.wrap}>
         <AuthHeader />
         <p className="eyebrow" style={styles.kicker}>KHMER LIVING ARCHIVE</p>
         <h1 style={styles.title}>My entries</h1>
-        <div style={styles.card}>
+        <div className="archive-notice" style={styles.card}>
           <p style={styles.cardText}>
             Log in to see the entries you have contributed.
           </p>
@@ -61,7 +61,7 @@ export default async function MyEntriesPage() {
   }
 
   return (
-    <main className="page-shell" style={styles.wrap}>
+    <main className="page-shell archive-page" style={styles.wrap}>
       <AuthHeader />
       <p className="eyebrow" style={styles.kicker}>KHMER LIVING ARCHIVE</p>
       <h1 style={styles.title}>My entries</h1>
@@ -80,13 +80,13 @@ export default async function MyEntriesPage() {
           .
         </p>
       ) : (
-        <section style={styles.entries} aria-label="Your entries">
+        <section className="my-entry-list" style={styles.entries} aria-label="Your entries">
           {entries.map((entry) => (
             <div key={entry.id} style={styles.entryItem}>
               <Link href={`/entries/${entry.id}`} style={styles.entryLink}>
                 <EntryCard {...entry} />
               </Link>
-              <p style={styles.statusRow}>
+              <p className="entry-status" style={styles.statusRow}>
                 <span style={styles.statusLabel}>Status — ស្ថានភាព</span>{" "}
                 <span style={styles.statusValue}>{statusLabel(entry.status)}</span>
               </p>

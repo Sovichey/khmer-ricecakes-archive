@@ -1,9 +1,11 @@
 import Link from "next/link";
 import AuthForm from "../../components/AuthForm";
+import AuthHeader from "../../components/AuthHeader";
 
 export default function LoginPage() {
   return (
-    <main className="page-shell" style={styles.wrap}>
+    <main className="page-shell archive-page archive-page-narrow" style={styles.wrap}>
+      <AuthHeader />
       <p className="eyebrow" style={styles.kicker}>KHMER LIVING ARCHIVE</p>
       <h1 style={styles.title}>Log in</h1>
       <p style={styles.description}>Return to your archive account.</p>

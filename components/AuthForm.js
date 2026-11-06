@@ -43,7 +43,7 @@ export default function AuthForm({ mode }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} style={styles.form}>
+    <form onSubmit={handleSubmit} className="archive-form-panel" style={styles.form}>
       <label htmlFor="email" style={styles.label}>Email</label>
       <input id="email" type="email" required value={email} onChange={(event) => setEmail(event.target.value)} style={styles.input} />
       <label htmlFor="password" style={styles.label}>Password</label>

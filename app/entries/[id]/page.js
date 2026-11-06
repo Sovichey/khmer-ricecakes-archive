@@ -1,6 +1,7 @@
 import Link from "next/link";
 import AuthHeader from "../../../components/AuthHeader";
 import EntryDetail from "../../../components/EntryDetail";
+import Icon from "../../../components/Icon";
 import { displayContributor } from "../../../lib/displayContributor";
 import { OWNER_COLUMN } from "../../../lib/schema";
 import { createSupabaseServerClient } from "../../../lib/supabase/server";
@@ -28,7 +29,7 @@ export default async function EntryPage({ params }) {
   }
   if (error || !entry) {
     return (
-      <main className="page-shell" style={styles.wrap}>
+      <main className="page-shell archive-page" style={styles.wrap}>
         <AuthHeader />
         <p className="eyebrow" style={styles.kicker}>KHMER LIVING ARCHIVE</p>
         <h1 style={styles.title}>Entry not found</h1>
@@ -46,22 +47,22 @@ export default async function EntryPage({ params }) {
   const displayTitle = entry.title || entry.title_khmer || "Untitled rice cake";
 
   return (
-    <main className="page-shell" style={styles.wrap}>
+    <main className="page-shell archive-page" style={styles.wrap}>
       <AuthHeader />
       <div style={styles.breadcrumb}>
         <Link href="/" className="text-link" style={styles.link}>Archive</Link>
         <span aria-hidden="true">/</span>
         <span>Entry</span>
       </div>
-      <article className="detail-article" style={styles.article}>
-        <div style={styles.visualColumn}>
+      <article className="detail-article surface-panel" style={styles.article}>
+        <div className="detail-visual" style={styles.visualColumn}>
           <div style={styles.imageFrame}>
-            <img src={entry.image} alt={`${displayTitle} rice cake`} style={styles.image} />
-            <span style={styles.imageBadge}>Rice cake story</span>
+            <img className="detail-image" src={entry.image} alt={`${displayTitle} rice cake`} style={styles.image} />
+            <span className="detail-image-badge" style={styles.imageBadge}>Rice cake story</span>
           </div>
           <p style={styles.imageCaption}>A living record of Khmer food, memory, and place.</p>
         </div>
-        <div style={styles.storyColumn}>
+        <div className="detail-story" style={styles.storyColumn}>
           <p className="eyebrow" style={styles.kicker}>ARCHIVE ENTRY</p>
           <h1 style={styles.title}>{displayTitle}</h1>
           {entry.title_khmer && entry.title_khmer !== entry.title && (
@@ -85,7 +86,7 @@ export default async function EntryPage({ params }) {
       </article>
       <div className="action-footer" style={styles.actionFooter}>
         <Link href="/" className="text-link back-link" style={styles.backLink}>
-          <span aria-hidden="true" style={styles.backIcon}>←</span>
+          <Icon name="arrow-left" size={16} className="back-icon" />
           <span>Back to archive</span>
         </Link>
         <EntryDetail entryId={entry.id} isOwner={isOwner} />
@@ -101,7 +102,7 @@ const styles = {
   title: { fontSize: "clamp(38px, 6vw, 64px)", margin: "22px 0 8px", lineHeight: 1.02, color: "var(--text)", fontWeight: 600, letterSpacing: -1.5 },
   titleKhmer: { color: "var(--leaf)", fontSize: 21, margin: "0 0 22px", lineHeight: 1.35 },
   description: { fontSize: 18, color: "var(--muted)", lineHeight: 1.8, margin: 0 },
-  article: { display: "grid", gap: 0, marginTop: 18, padding: 14, background: "linear-gradient(145deg, rgba(36, 30, 25, 0.98), rgba(27, 22, 18, 0.96))", border: "1px solid var(--border)", borderRadius: 22, boxShadow: "var(--shadow)" },
+  article: { display: "grid", gap: 0, marginTop: 18, padding: 14, background: "linear-gradient(145deg, rgba(14, 43, 30, 0.98), rgba(8, 28, 20, 0.96))", border: "1px solid var(--border)", borderRadius: 22, boxShadow: "var(--shadow)" },
   visualColumn: { display: "grid", alignContent: "start", gap: 12 },
   imageFrame: { position: "relative", overflow: "hidden", borderRadius: 15, backgroundColor: "var(--muted-bg)" },
   image: { width: "100%", aspectRatio: "16 / 8", objectFit: "cover", display: "block", backgroundColor: "var(--border)" },
@@ -126,11 +127,6 @@ const styles = {
     fontWeight: 700,
     textDecoration: "none",
     backgroundColor: "rgba(36, 30, 25, 0.6)",
-  },
-  backIcon: {
-    color: "var(--accent)",
-    fontSize: 18,
-    lineHeight: 1,
   },
   link: { color: "var(--accent)" },
 };

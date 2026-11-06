@@ -1,9 +1,11 @@
 import Link from "next/link";
 import AuthForm from "../../components/AuthForm";
+import AuthHeader from "../../components/AuthHeader";
 
 export default function SignupPage() {
   return (
-    <main className="page-shell" style={styles.wrap}>
+    <main className="page-shell archive-page archive-page-narrow" style={styles.wrap}>
+      <AuthHeader />
       <p className="eyebrow" style={styles.kicker}>KHMER LIVING ARCHIVE</p>
       <h1 style={styles.title}>Sign up</h1>
       <p style={styles.description}>Create an account to join the archive.</p>

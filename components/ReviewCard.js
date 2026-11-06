@@ -39,7 +39,7 @@ export default function ReviewCard({ entry, onReviewed }) {
 
   return (
     <article className="surface-panel" style={styles.card}>
-      <div style={styles.top}>
+      <div className="review-top" style={styles.top}>
         <div style={styles.imageFrame}>
           <img src={entry.image} alt={`${displayTitle} rice cake`} style={styles.image} />
         </div>
@@ -67,7 +67,7 @@ export default function ReviewCard({ entry, onReviewed }) {
       <footer style={styles.footer}>
         <button
           type="button"
-          className="btn"
+          className="btn review-publish"
           style={styles.publish}
           disabled={busy}
           onClick={() => decide("published")}
@@ -76,7 +76,7 @@ export default function ReviewCard({ entry, onReviewed }) {
         </button>
         <button
           type="button"
-          className="btn"
+          className="btn review-return"
           style={styles.returned}
           disabled={busy}
           onClick={() => decide("returned")}
@@ -96,7 +96,7 @@ const styles = {
   image: { width: "100%", height: "100%", minHeight: 220, objectFit: "cover", display: "block", backgroundColor: "var(--muted-bg)" },
   body: { padding: "22px 22px 18px", display: "flex", flexDirection: "column", gap: 12 },
   heading: { display: "grid", gap: 6 },
-  kicker: { margin: 0, color: "var(--terracotta)", fontFamily: "'Courier New', monospace", fontSize: 10, fontWeight: 700, letterSpacing: 1.1, textTransform: "uppercase" },
+  kicker: { margin: 0, color: "var(--accent)", fontFamily: "'Courier New', monospace", fontSize: 10, fontWeight: 700, letterSpacing: 1.1, textTransform: "uppercase" },
   title: { margin: 0, color: "var(--text)", fontSize: 26, lineHeight: 1.15 },
   titleKhmer: { margin: 0, color: "var(--leaf)", fontSize: 18, lineHeight: 1.35 },
   description: { margin: 0, color: "var(--muted)", fontSize: 14, lineHeight: 1.65, overflowWrap: "break-word" },

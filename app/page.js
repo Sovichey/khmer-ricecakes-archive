@@ -4,219 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import EntryCard from "../components/EntryCard";
 import AuthHeader from "../components/AuthHeader";
+import Icon from "../components/Icon";
 import collection from "../collection.config.js";
 import { getSupabaseBrowserClient } from "../lib/supabase/client";
-
-const styles = {
-  wrap: {
-    maxWidth: 1080,
-    margin: "0 auto",
-    padding: "24px 24px 72px",
-  },
-  kicker: {
-    margin: 0,
-  },
-  title: {
-    fontSize: "clamp(42px, 7vw, 72px)",
-    fontWeight: 600,
-    margin: "22px 0 18px",
-    lineHeight: 0.98,
-    color: "var(--text)",
-    maxWidth: 620,
-    letterSpacing: -2,
-  },
-  description: {
-    fontSize: 18,
-    color: "var(--muted)",
-    lineHeight: 1.65,
-    margin: 0,
-    maxWidth: 590,
-  },
-  hero: {
-    display: "grid",
-    gridTemplateColumns: "minmax(0, 1.35fr) minmax(280px, 0.65fr)",
-    gap: 28,
-    alignItems: "stretch",
-    marginTop: 32,
-  },
-  heroCopy: {
-    padding: "34px 0 30px",
-  },
-  heroRule: {
-    width: 76,
-    height: 3,
-    border: 0,
-    margin: "0 0 24px",
-    backgroundColor: "var(--accent)",
-  },
-  indexPanel: {
-    display: "grid",
-    alignContent: "space-between",
-    gap: 24,
-    padding: 24,
-    background: "linear-gradient(150deg, var(--surface), rgba(58, 46, 34, 0.62))",
-    border: "1px solid var(--border)",
-    borderRadius: 18,
-    boxShadow: "var(--shadow)",
-  },
-  indexHeading: {
-    display: "flex",
-    justifyContent: "space-between",
-    gap: 12,
-    alignItems: "center",
-    margin: 0,
-    color: "var(--accent)",
-    fontFamily: "'Courier New', monospace",
-    fontSize: 11,
-    letterSpacing: 1,
-    textTransform: "uppercase",
-  },
-  indexNumber: {
-    color: "var(--text)",
-    fontFamily: "Georgia, serif",
-    fontSize: 54,
-    lineHeight: 1,
-    margin: 0,
-  },
-  indexText: {
-    color: "var(--muted)",
-    fontSize: 13,
-    lineHeight: 1.6,
-    margin: 0,
-  },
-  indexDetails: {
-    display: "grid",
-    gap: 12,
-    paddingTop: 18,
-    borderTop: "1px solid var(--border)",
-  },
-  indexDetail: {
-    display: "flex",
-    justifyContent: "space-between",
-    gap: 16,
-    color: "var(--text)",
-    fontSize: 13,
-    margin: 0,
-  },
-  indexLabel: {
-    color: "var(--muted)",
-    fontFamily: "'Courier New', monospace",
-    fontSize: 10,
-    textTransform: "uppercase",
-  },
-  searchPanel: {
-    marginTop: 38,
-    padding: 18,
-    backgroundColor: "var(--surface)",
-    border: "1px solid var(--border)",
-    borderRadius: 14,
-  },
-  metadata: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-    gap: 12,
-    marginTop: 0,
-  },
-  card: {
-    padding: "18px 20px",
-    backgroundColor: "rgba(29, 37, 33, 0.82)",
-    border: "1px solid var(--border)",
-    borderRadius: 14,
-  },
-  cardLabel: {
-    fontFamily: "'Courier New', monospace",
-    fontSize: 12,
-    color: "var(--accent)",
-    margin: 0,
-  },
-  cardValue: {
-    fontSize: 16,
-    margin: "6px 0 0",
-    color: "var(--text)",
-    lineHeight: 1.5,
-  },
-  count: {
-    fontFamily: "'Courier New', monospace",
-    fontSize: 13,
-    color: "var(--leaf)",
-    margin: "34px 0 0",
-    letterSpacing: 0.3,
-  },
-  footer: {
-    marginTop: 64,
-    paddingTop: 24,
-    borderTop: "1px solid var(--border)",
-    fontSize: 13,
-    color: "var(--muted)",
-  },
-  entries: {
-    display: "grid",
-    gap: 22,
-    marginTop: 20,
-  },
-  entriesHeading: {
-    display: "flex",
-    alignItems: "end",
-    justifyContent: "space-between",
-    gap: 16,
-    marginTop: 48,
-  },
-  sectionTitle: {
-    color: "var(--text)",
-    fontFamily: "Georgia, serif",
-    fontSize: 28,
-    margin: 0,
-  },
-  sectionNote: {
-    color: "var(--muted)",
-    fontSize: 13,
-    margin: 0,
-  },
-  entryLink: {
-    textDecoration: "none",
-    color: "inherit",
-    display: "block",
-  },
-  searchLabel: {
-    display: "block",
-    fontSize: 14,
-    fontWeight: 700,
-    marginTop: 0,
-    marginBottom: 8,
-    color: "var(--text)",
-  },
-  searchInput: {
-    width: "100%",
-    boxSizing: "border-box",
-    padding: "14px 44px 14px 16px",
-    border: "1px solid var(--border)",
-    borderRadius: 10,
-    backgroundColor: "var(--bg)",
-    color: "var(--text)",
-    fontSize: 16,
-  },
-  searchBox: {
-    position: "relative",
-  },
-  clearButton: {
-    position: "absolute",
-    top: "50%",
-    right: 10,
-    transform: "translateY(-50%)",
-    border: 0,
-    background: "transparent",
-    color: "var(--muted)",
-    fontSize: 22,
-    lineHeight: 1,
-    cursor: "pointer",
-    padding: "4px 8px",
-  },
-  emptyState: {
-    margin: "28px 0 0",
-    color: "var(--muted)",
-    lineHeight: 1.6,
-  },
-};
 
 export default function Home() {
   const [query, setQuery] = useState("");
@@ -259,87 +49,115 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="page-shell" style={styles.wrap}>
-      <AuthHeader />
-      <section className="hero-layout" style={styles.hero}>
-        <div style={styles.heroCopy}>
-          <p className="eyebrow" style={styles.kicker}>KHMER LIVING ARCHIVE</p>
-          <hr style={styles.heroRule} />
-          <h1 style={styles.title}>{collection.name}</h1>
-          <p style={styles.description}>{collection.description}</p>
-        </div>
-        <aside style={styles.indexPanel} aria-label="Archive index">
-          <p style={styles.indexHeading}>
-            <span>Archive index</span>
-            <span>01 / 04</span>
-          </p>
-          <div>
-            <p style={styles.indexNumber}>{loading ? "—" : entries.length}</p>
-            <p style={styles.indexText}>published rice-cake stories held in this living collection</p>
+    <main className="home-page">
+      <div className="home-top">
+        <AuthHeader />
+        <section className="home-hero" aria-labelledby="hero-title">
+          <div className="hero-copy">
+            <p className="hero-kicker"><span lang="km">ខ្មែរ</span><span /></p>
+            <h1 id="hero-title" className="hero-title">
+              Every rice cake is a <em>memory</em> wrapped in leaf.
+            </h1>
+            <p className="hero-description">{collection.description}</p>
+            <div className="hero-actions">
+              <a className="hero-button hero-button-primary" href="#collection">
+                Explore the collection
+              </a>
+              <Link className="hero-button hero-button-outline" href="/contribute">
+                Add your story
+              </Link>
+            </div>
+            <div className="archive-stats" aria-label="Archive details">
+              <div className="stat-count">
+                <strong>{loading ? "—" : entries.length}</strong>
+                <span>published stories</span>
+              </div>
+              <div className="stat-detail">
+                <span>Curator</span>
+                <strong>{collection.curator}</strong>
+              </div>
+              <div className="stat-detail">
+                <span>Place</span>
+                <strong>{collection.province}</strong>
+              </div>
+            </div>
           </div>
-          <div style={styles.indexDetails}>
-            <p style={styles.indexDetail}><span style={styles.indexLabel}>Curator</span><span>{collection.curator}</span></p>
-            <p style={styles.indexDetail}><span style={styles.indexLabel}>Place</span><span>{collection.province}</span></p>
-          </div>
-        </aside>
-      </section>
 
-      <section style={styles.searchPanel} aria-label="Search">
-        <label htmlFor="entry-search" style={styles.searchLabel}>
-          Explore the collection
-        </label>
-        <div style={styles.searchBox}>
-          <input
-            id="entry-search"
-            type="text"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search by name, story, contributor, or place"
-            style={styles.searchInput}
-          />
-          {hasQuery && (
-            <button type="button" onClick={() => setQuery("")} aria-label="Clear search" style={styles.clearButton}>
-              ×
-            </button>
-          )}
-        </div>
-        <p style={styles.count}>
-          {loading
-            ? "Loading the archive…"
-            : loadError
-              ? "The archive could not be loaded right now."
-              : `entries in the archive: ${visibleEntries.length} of ${entries.length}`}
-        </p>
-      </section>
-
-      <div className="entries-heading" style={styles.entriesHeading}>
-        <h2 style={styles.sectionTitle}>The collection</h2>
-        <p style={styles.sectionNote}>Stories of making, memory, and place</p>
+          <figure className="hero-image">
+            <div className="hero-image-frame">
+              <img
+                src="/assets/hero.png"
+                alt="Khmer rice cakes wrapped in dark green banana leaves and tied with string"
+              />
+              <span className="image-callout callout-tie">String tie</span>
+              <span className="image-callout callout-wrap">Banana leaf wrap</span>
+            </div>
+            <figcaption>Rice cakes wrapped in banana leaf, ready to share.</figcaption>
+          </figure>
+        </section>
       </div>
 
-      {loading || loadError ? null : visibleEntries.length > 0 ? (
-        <section className="entry-grid" style={styles.entries} aria-label="Archive entries">
-          {visibleEntries.map((entry) => (
-            <Link key={entry.id} href={`/entries/${entry.id}`} style={styles.entryLink}>
-              <EntryCard {...entry} query={query} />
-            </Link>
-          ))}
-        </section>
-      ) : hasQuery ? (
-        <p style={styles.emptyState}>
-          No rice cakes match that search yet. Try another English or Khmer word,
-          or clear the search. មិនមាននំអង្ករត្រូវនឹងការស្វែងរកនេះទេ។
-        </p>
-      ) : (
-        <p style={styles.emptyState}>
-          No entries in the archive yet. Come back soon.
-        </p>
-      )}
+      <section id="collection" className="collection-section" aria-labelledby="collection-title">
+        <div className="collection-inner">
+          <div className="collection-intro">
+            <h2 id="collection-title">Explore the collection</h2>
+            <p>Search by cake name, story, contributor, or place.</p>
+          </div>
+          <form
+            className="collection-search"
+            role="search"
+            onSubmit={(event) => event.preventDefault()}
+          >
+            <label className="search-icon" htmlFor="entry-search">
+              <Icon name="search" size={19} />
+            </label>
+            <input
+              id="entry-search"
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search by name, story, contributor, or place"
+            />
+            {hasQuery && (
+              <button
+                type="button"
+                className="search-clear"
+                onClick={() => setQuery("")}
+                aria-label="Clear search"
+              >
+                <Icon name="x" size={16} />
+              </button>
+            )}
+          </form>
+          <p className="collection-count">
+            {loading
+              ? "Loading the archive…"
+              : loadError
+                ? "The archive could not be loaded right now."
+                : `Entries in the archive: ${visibleEntries.length} of ${entries.length}`}
+          </p>
 
-      <footer style={styles.footer}>
-        Built in ICT 340 - Vibe Coding, American University of Phnom Penh, Fall
-        2026. Entries are added by contributors and stay owned by the account
-        that wrote them.
+          {loading || loadError ? null : visibleEntries.length > 0 ? (
+            <section className="entry-grid collection-entries" aria-label="Archive entries">
+              {visibleEntries.map((entry) => (
+                <Link key={entry.id} href={`/entries/${entry.id}`} className="entry-link">
+                  <EntryCard {...entry} query={query} />
+                </Link>
+              ))}
+            </section>
+          ) : hasQuery ? (
+            <p className="collection-empty">
+              No rice cakes match that search yet. Try another English or Khmer word,
+              or clear the search. មិនមាននំអង្ករត្រូវនឹងការស្វែងរកនេះទេ។
+            </p>
+          ) : (
+            <p className="collection-empty">No entries in the archive yet. Come back soon.</p>
+          )}
+        </div>
+      </section>
+      <footer className="home-footer">
+        Built in ICT 340 - Vibe Coding, American University of Phnom Penh, Fall 2026.
+        Entries are added by contributors and stay owned by the account that wrote them.
       </footer>
     </main>
   );

@@ -17,7 +17,7 @@ export default async function ContributePage() {
   }
 
   return (
-    <main className="page-shell" style={styles.wrap}>
+    <main className="page-shell archive-page" style={styles.wrap}>
       <AuthHeader />
       <p className="eyebrow" style={styles.kicker}>KHMER LIVING ARCHIVE</p>
       <h1 style={styles.title}>Contribute an entry</h1>
@@ -29,7 +29,7 @@ export default async function ContributePage() {
       {user ? (
         <EntryForm mode="create" />
       ) : (
-        <div style={styles.card}>
+        <div className="archive-notice" style={styles.card}>
           <p style={styles.loginText}>
             Only logged-in contributors can add entries to the archive.
           </p>

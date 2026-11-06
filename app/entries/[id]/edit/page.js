@@ -27,7 +27,7 @@ export default async function EditEntryPage({ params }) {
   }
   if (error || !entry) {
     return (
-      <main className="page-shell" style={styles.wrap}>
+      <main className="page-shell archive-page" style={styles.wrap}>
         <AuthHeader />
         <p className="eyebrow" style={styles.kicker}>KHMER LIVING ARCHIVE</p>
         <h1 style={styles.title}>Entry not found</h1>
@@ -44,14 +44,14 @@ export default async function EditEntryPage({ params }) {
   const isOwner = Boolean(user && entry[OWNER_COLUMN] === user.id);
 
   return (
-    <main className="page-shell" style={styles.wrap}>
+    <main className="page-shell archive-page" style={styles.wrap}>
       <AuthHeader />
       <p className="eyebrow" style={styles.kicker}>KHMER LIVING ARCHIVE</p>
       <h1 style={styles.title}>Edit entry</h1>
       {isOwner ? (
         <EntryForm mode="edit" entryId={entry.id} initialValues={entry} />
       ) : (
-        <div style={styles.card}>
+        <div className="archive-notice" style={styles.card}>
           <p style={styles.cardText}>Only the entry's owner can edit it.</p>
           <Link href={`/entries/${entry.id}`} className="text-link" style={styles.link}>
             Back to the entry

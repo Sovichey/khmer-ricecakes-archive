@@ -74,7 +74,7 @@ export default function EntryForm({ mode = "create", entryId = null, initialValu
 
   if (successMessage) {
     return (
-      <div style={styles.successCard}>
+      <div className="archive-notice" style={styles.successCard}>
         <p role="status" style={styles.successMessage}>
           {successMessage}
         </p>
@@ -86,7 +86,7 @@ export default function EntryForm({ mode = "create", entryId = null, initialValu
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate style={styles.form}>
+    <form onSubmit={handleSubmit} noValidate className="archive-form-panel" style={styles.form}>
       <FormField label="Title (English) — ចំណងជើងអង់គ្លេស" htmlFor="title" error={errors.title}>
         <input
           id="title"

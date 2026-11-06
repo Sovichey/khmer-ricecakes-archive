@@ -36,12 +36,12 @@ export default function EntryDetail({ entryId, isOwner }) {
 
   return (
     <div style={styles.bar}>
-      <Link href={`/entries/${entryId}/edit`} className="btn" style={styles.edit}>
+      <Link href={`/entries/${entryId}/edit`} className="btn detail-edit" style={styles.edit}>
         Edit
       </Link>
       <button
         type="button"
-        className="btn"
+        className="btn detail-delete"
         onClick={handleDelete}
         disabled={deleting}
         style={deleting ? styles.deleteDisabled : styles.delete}

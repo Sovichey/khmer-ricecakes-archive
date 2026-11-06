@@ -1,6 +1,6 @@
 export default function FormField({ label, htmlFor, error, children }) {
   return (
-    <div style={styles.field}>
+    <div className="archive-field" style={styles.field}>
       <label htmlFor={htmlFor} style={styles.label}>
         {label}
       </label>

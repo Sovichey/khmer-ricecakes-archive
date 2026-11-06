@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import collection from "../collection.config.js";
 import { getSupabaseBrowserClient } from "../lib/supabase/client";
+import Icon from "./Icon";
 
 export default function AuthHeader() {
   const [user, setUser] = useState(null);
@@ -29,45 +30,45 @@ export default function AuthHeader() {
   }
 
   return (
-    <header style={styles.header}>
+    <header className="archive-header" style={styles.header}>
       <Link href="/" className="text-link" style={styles.brand}>
-        <span style={styles.brandMark} aria-hidden="true">៚</span>
+        <span style={styles.brandMark} aria-hidden="true"><Icon name="archive" size={20} /></span>
         <span style={styles.brandText}>
           <strong style={styles.brandTitle}>{collection.name}</strong>
           <small style={styles.brandSubtitle}>Khmer living archive</small>
         </span>
       </Link>
-      <nav aria-label="Account" style={styles.nav}>
+      <nav aria-label="Account" className="account-nav" style={styles.nav}>
         {user ? (
           <>
-            <span style={styles.userPill}>
+            <span className="user-pill" style={styles.userPill}>
               <span style={styles.avatar} aria-hidden="true">
                 {(user.email?.[0] ?? "U").toUpperCase()}
               </span>
               <span style={styles.email}>{user.email}</span>
             </span>
-            <span style={styles.divider} aria-hidden="true" />
-            <Link href="/my-entries" className="text-link" style={styles.link}>
+            <span className="account-divider" style={styles.divider} aria-hidden="true" />
+            <Link href="/my-entries" className="text-link header-link" style={styles.link}>
               My entries
             </Link>
             {isReviewer && (
-              <Link href="/review" className="text-link" style={styles.link}>
+              <Link href="/review" className="text-link header-link" style={styles.link}>
                 Review queue
               </Link>
             )}
-            <Link href="/contribute" className="btn" style={styles.button}>
-              <span aria-hidden="true">+</span> Add entry
+            <Link href="/contribute" className="btn header-action" style={styles.button}>
+              <Icon name="plus" size={16} /> Add entry
             </Link>
-            <button type="button" onClick={logOut} className="btn" style={styles.ghostButton}>
+            <button type="button" onClick={logOut} className="btn header-action-secondary" style={styles.ghostButton}>
               Log out
             </button>
           </>
         ) : (
           <>
-            <Link href="/login" className="text-link" style={styles.link}>
+            <Link href="/login" className="text-link header-link header-login" style={styles.link}>
               Log in
             </Link>
-            <Link href="/signup" className="btn" style={styles.button}>
+            <Link href="/signup" className="btn header-action" style={styles.button}>
               Sign up
             </Link>
           </>
@@ -82,48 +83,50 @@ const styles = {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    gap: 16,
+    gap: 20,
     flexWrap: "wrap",
-    padding: "14px 0 20px",
-    marginBottom: 42,
-    borderBottom: "1px solid var(--border)",
+    padding: "16px 0 22px",
+    marginBottom: 0,
   },
   brand: {
     display: "inline-flex",
     alignItems: "center",
-    gap: 11,
+    gap: 12,
+    minWidth: 0,
     color: "var(--text)",
     textDecoration: "none",
   },
   brandMark: {
     display: "grid",
     placeItems: "center",
-    width: 38,
-    height: 38,
+    width: 42,
+    height: 42,
+    flex: "0 0 42px",
     border: "1px solid var(--accent)",
-    borderRadius: "12px 12px 12px 3px",
+    borderRadius: "14px 14px 14px 4px",
     color: "var(--accent)",
-    background: "linear-gradient(145deg, var(--muted-bg), var(--surface))",
+    background: "transparent",
     fontSize: 24,
     lineHeight: 1,
   },
   brandText: {
     display: "grid",
     gap: 2,
+    minWidth: 0,
   },
   brandTitle: {
     fontSize: 15,
     fontWeight: 800,
     letterSpacing: 0.4,
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
   },
   brandSubtitle: {
     color: "var(--muted)",
-    fontFamily: "'Courier New', monospace",
-    fontSize: 9,
-    letterSpacing: 1.1,
-    textTransform: "uppercase",
+    fontSize: 11,
   },
-  nav: { display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" },
+  nav: { display: "flex", alignItems: "center", justifyContent: "flex-end", gap: 10, flexWrap: "wrap" },
   userPill: {
     display: "inline-flex",
     alignItems: "center",
@@ -148,7 +151,7 @@ const styles = {
   },
   email: { overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" },
   divider: { width: 1, height: 24, backgroundColor: "var(--border)" },
-  link: { color: "var(--accent)", fontSize: 14, fontWeight: 700, textDecoration: "none" },
-  button: { display: "inline-flex", alignItems: "center", gap: 6, padding: "10px 15px", border: 0, borderRadius: 999, backgroundColor: "var(--accent)", color: "var(--accent-ink)", fontSize: 13, fontWeight: 800, textDecoration: "none", cursor: "pointer", boxShadow: "0 6px 18px rgba(215, 168, 76, 0.16)" },
-  ghostButton: { padding: "9px 14px", border: "1px solid var(--border)", borderRadius: 999, backgroundColor: "transparent", color: "var(--text)", fontSize: 13, fontWeight: 800, cursor: "pointer" },
+  link: { color: "var(--muted)", fontSize: 13, fontWeight: 600, textDecoration: "none" },
+  button: { display: "inline-flex", minHeight: 44, alignItems: "center", justifyContent: "center", gap: 6, padding: "0 19px", border: "1px solid var(--accent)", borderRadius: 999, backgroundColor: "var(--accent)", color: "var(--accent-ink)", fontSize: 13, fontWeight: 700, textDecoration: "none", cursor: "pointer", boxShadow: "none", whiteSpace: "nowrap" },
+  ghostButton: { display: "inline-flex", minHeight: 42, alignItems: "center", justifyContent: "center", padding: "0 16px", border: "1px solid var(--accent)", borderRadius: 999, backgroundColor: "transparent", color: "var(--accent)", fontSize: 13, fontWeight: 600, cursor: "pointer", whiteSpace: "nowrap" },
 };
